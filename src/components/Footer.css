@@ -1,0 +1,9 @@
+.footer-stock{
+    background-color: #d7d7d7;
+  color: rgb(0, 0, 0);
+  padding: 10px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}

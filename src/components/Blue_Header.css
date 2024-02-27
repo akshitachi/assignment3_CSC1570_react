@@ -1,0 +1,40 @@
+.stock_navbar{
+  background-color: #19239A;
+}
+
+.stock_navbar a,.stock_navbar a:hover, .stock_navbar .navbar_brand:hover, .stock_navbar .navbar_brand {
+  color: white;
+}
+
+.stock_navbar .navbar_toggle{
+  color: #969BE2;
+  border-color: #2b2ab1;
+  padding: 2px;
+}
+
+.stock_navbar .navbar-container{
+  padding: 0px 58px;
+  margin: 0;
+  max-width: 100%;
+}
+
+.stock_navbar .active {
+  border: 2px solid white;
+  border-radius: 15px;
+}
+
+.stock_navbar .nav-link {
+  text-align: center;
+  width: 100px;
+}
+
+@media (max-width: 844px) {
+  .stock_navbar .navbar-container{
+    padding: 0px 25px;
+  }
+  .stock_navbar .nav-link {
+    width: 300px;
+  text-align: start;
+  padding: 10px;
+  }
+}
