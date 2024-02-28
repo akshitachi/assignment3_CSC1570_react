@@ -4,31 +4,22 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { BsSearch, BsX } from 'react-icons/bs';
 import './Search_Bar.css';
 
-// function Search_Bar() {
-//   const [ticker, setTicker] = useState('');
-//   useEffect(() => {
-//       fetch(`http://localhost:8080/autocomplete/${ticker}`, {
-//         method: 'POST',
-//         headers: {
-//           'Content-Type': 'application/json',
-//         },
-//       })
-//         .then(response => response.json())
-//         .then(data => {
-//           console.log(ticker);
-//           console.log(data);
-//         })
-//         .catch(error => {
-//           console.error(error);
-//         });
-//   }, [ticker]);
 function Search_Bar() {
   const [ticker, setTicker] = useState('');
   const [loading, setLoading] = useState(false);
   const [dropdownData, setDropdownData] = useState([]);
+  const [itemSelected, setItemSelected] = useState(false);
+
+  function ResultClick(symbol) {
+    console.log(symbol);
+    setTicker(symbol);
+    setItemSelected(true);
+    setDropdownData([]);  
+    setLoading(false);
+  }
 
   useEffect(() => {
-    if (ticker) {
+    if (ticker && !itemSelected) {
       setLoading(true);
       fetch(`http://localhost:8080/autocomplete/${ticker}`, {
         method: 'POST',
@@ -46,57 +37,47 @@ function Search_Bar() {
           console.error(error);
           setLoading(false);
         });
+    } else {
+      setItemSelected(false);
+      setDropdownData([]);
     }
   }, [ticker]);
 
   return (
-    <Form className="search-bar">
-      <Form.Group className="search-field">
-        <Form.Control
-          className="input-field"
-          type="search"
-          placeholder="Enter stock ticker symbol"
-          value={ticker}
-          onChange={e => setTicker(e.target.value)}
-        />
-        <BsSearch className="search-icon" />
-        <BsX className="clear-icon" />
-      </Form.Group>
-      {/* <div className="autocomplete-dropdown"> */}
-      {loading && <div className="loader">Loading...</div>}
-      {dropdownData.length > 0 && (
-        <ul className="show">
-          {dropdownData.map(item => (
-            <li className='autocomplete-item' key={item.symbol} onClick={() => setTicker(item.symbol)}>
-              {item.description}
-            </li>
-          ))}
-        </ul>
-      )}
-      {/* </div> */}
-    </Form>
+    <div>
+      <Form className="search-bar">
+        <Form.Group className="search-field">
+          <Form.Control
+            className="input-field"
+            type="search"
+            placeholder="Enter stock ticker symbol"
+            value={ticker}
+            onChange={e => setTicker(e.target.value)}
+          />
+          <BsSearch className="search-icon" />
+          <BsX
+            className="clear-icon"
+            onClick={() => {
+              setTicker('');
+              setItemSelected(false);
+              setDropdownData([]);
+              setLoading(false);
+            }}
+          />
+        </Form.Group>
+      </Form>
+      <div className="results-list">
+        {(loading && ticker) && <div className="loader">Loading...</div>}
+        {(!loading && dropdownData.length > 0 && ticker) && (
+          <div>
+            {dropdownData.map(item => (
+              <div className='autocomplete-item'key={item.symbol} onClick={() => ResultClick(item.symbol)}>{item.symbol} | {item.description}</div>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
   );
 }
 
 export default Search_Bar;
-
-//   return (
-//     <Form className="search-bar">
-//       <Form.Group className="mb-3" class="search-field" >
-//         <Form.Control
-//           className='input-field'
-//           type="search"
-//           placeholder="Enter stock ticker symbol"
-//           value={ticker}
-//           onChange={e => setTicker(e.target.value)}
-//         />
-//         <BsSearch className="search-icon" />
-//         <BsX className="clear-icon" />
-//       </Form.Group>
-//     </Form>
-//   );
-// }
-
-// export default Search_Bar;
-
-
