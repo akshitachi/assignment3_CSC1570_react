@@ -23,6 +23,9 @@
         width: 280px;
     }
 }
+input[type="search"]::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+}
 
 .search-field .search-icon {
     position: absolute;
