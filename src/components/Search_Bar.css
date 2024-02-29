@@ -9,8 +9,17 @@
     width: 430px;
     position: relative;
 }
+.search-field:focus-within {
+    outline: none; 
+    border-color: initial;
+  }
+  
+  .input-field:focus {
+    border-color: initial; 
+  }
 
 .search-field .clear-icon {
+    color:#19239A;
     position: absolute;
     top: 50%;
     right: 5px;
@@ -29,6 +38,7 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 .search-field .search-icon {
+    color: #19239A;
     position: absolute;
     top: 50%;
     right: 47px;
@@ -56,3 +66,12 @@ input[type="search"]::-webkit-search-cancel-button {
     padding: 10px;
     cursor: pointer;
 }
+.loader{
+    padding: 15px;
+}
+.spinner {
+    width: 1.5rem;
+    height: 1.5rem;
+    border-width: 0.2em;
+    color: blue;
+  }

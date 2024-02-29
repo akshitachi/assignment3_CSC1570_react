@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BsSearch, BsX } from 'react-icons/bs';
 import './Search_Bar.css';
+import Spinner from 'react-bootstrap/Spinner';
 
 function Search_Bar() {
   const [ticker, setTicker] = useState('');
@@ -14,7 +15,7 @@ function Search_Bar() {
     console.log(symbol);
     setTicker(symbol);
     setItemSelected(true);
-    setDropdownData([]);  
+    setDropdownData([]);
     setLoading(false);
   }
 
@@ -67,11 +68,16 @@ function Search_Bar() {
         </Form.Group>
       </Form>
       <div className="results-list">
-        {(loading && ticker) && <div className="loader">Loading...</div>}
+        {(loading && ticker) && <div className="loader"><Spinner
+          animation="border"
+          role="status"
+          className="spinner"
+        >
+        </Spinner></div>}
         {(!loading && dropdownData.length > 0 && ticker) && (
           <div>
             {dropdownData.map(item => (
-              <div className='autocomplete-item'key={item.symbol} onClick={() => ResultClick(item.symbol)}>{item.symbol} | {item.description}</div>
+              <div className='autocomplete-item' key={item.symbol} onClick={() => ResultClick(item.symbol)}>{item.symbol} | {item.description}</div>
             ))}
           </div>
         )}
