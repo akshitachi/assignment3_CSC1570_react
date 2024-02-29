@@ -7,7 +7,7 @@ function Stock_Data() {
   if (ticker === undefined) {
     return null;
   }
-
+  
   return (
     <div>
       <h2>Stock Data for {ticker}</h2>

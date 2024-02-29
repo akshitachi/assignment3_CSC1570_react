@@ -12,12 +12,14 @@ function Search_Bar() {
   const [dropdownData, setDropdownData] = useState([]);
   const [itemSelected, setItemSelected] = useState(false);
   const navigate = useNavigate();
+  const [pageChange, setPageChange] = useState(false);
 
   function ResultClick(symbol) {
     setTicker(symbol);
     setItemSelected(true);
     setDropdownData([]);
     setLoading(false);
+    setPageChange(true);
     navigate(`/search/${symbol}`);
   }
 
@@ -82,6 +84,9 @@ function Search_Bar() {
             ))}
           </div>
         )}
+      </div>
+      <div>
+        {(!loading && dropdownData.length === 0 && ticker && !pageChange) && <div className='no-results'>No results found</div>}
       </div>
       </Form>
   );
