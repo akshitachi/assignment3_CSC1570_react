@@ -5,7 +5,7 @@ import { BsSearch, BsX } from 'react-icons/bs';
 import './Search_Bar.css';
 import Spinner from 'react-bootstrap/Spinner';
 
-function Search_Bar() {
+function Search_Bar({onSymbolSelect}) {
   const [ticker, setTicker] = useState('');
   const [loading, setLoading] = useState(false);
   const [dropdownData, setDropdownData] = useState([]);
@@ -17,6 +17,7 @@ function Search_Bar() {
     setItemSelected(true);
     setDropdownData([]);
     setLoading(false);
+    onSymbolSelect(symbol);
   }
 
   useEffect(() => {
