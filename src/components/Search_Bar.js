@@ -12,7 +12,6 @@ function Search_Bar({onSymbolSelect}) {
   const [itemSelected, setItemSelected] = useState(false);
 
   function ResultClick(symbol) {
-    console.log(symbol);
     setTicker(symbol);
     setItemSelected(true);
     setDropdownData([]);
@@ -46,7 +45,6 @@ function Search_Bar({onSymbolSelect}) {
   }, [ticker]);
 
   return (
-    <div>
       <Form className="search-bar">
         <Form.Group className="search-field">
           <Form.Control
@@ -67,8 +65,7 @@ function Search_Bar({onSymbolSelect}) {
             }}
           />
         </Form.Group>
-      </Form>
-      <div className="results-list">
+        <div className="results-list">
         {(loading && ticker) && <div className="loader"><Spinner
           animation="border"
           role="status"
@@ -83,7 +80,7 @@ function Search_Bar({onSymbolSelect}) {
           </div>
         )}
       </div>
-    </div>
+      </Form>
   );
 }
 

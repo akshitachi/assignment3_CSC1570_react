@@ -1,25 +1,28 @@
-.search-bar{
+.search-bar {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
 .search-field {
     width: 430px;
     position: relative;
+    z-index: 1;
 }
+
 .search-field:focus-within {
-    outline: none; 
+    outline: none;
     border-color: initial;
-  }
-  
-  .input-field:focus {
-    border-color: initial; 
-  }
+}
+
+.input-field:focus {
+    border-color: initial;
+}
 
 .search-field .clear-icon {
-    color:#19239A;
+    color: #19239A;
     position: absolute;
     top: 50%;
     right: 5px;
@@ -33,6 +36,7 @@
         width: 280px;
     }
 }
+
 input[type="search"]::-webkit-search-cancel-button {
     -webkit-appearance: none;
 }
@@ -45,46 +49,59 @@ input[type="search"]::-webkit-search-cancel-button {
     transform: translateY(-50%);
 }
 
-.input-field{
+.input-field {
     border-radius: 40px;
     border-color: #19239A;
     border-width: 3px;
 }
 
-.results-list{
-    background-color: white; 
+.results-list {
+    width: 350px;
+    background-color: white;
     display: flex;
     flex-direction: column;
     box-shadow: 0px 0px 8px #ddd;
-    max-height: 320px;
+    max-height: 350px;
     overflow-y: scroll;
     margin-left: 570px;
     margin-right: 620px;
+    z-index: 1;
+    margin-top: -9px;
+    position: relative;
+    right: 0px;
 }
 
 @media (max-width: 768px) {
     .results-list {
-        background-color: white; 
+        background-color: white;
         display: flex;
         flex-direction: column;
         box-shadow: 0px 0px 8px #ddd;
-        max-height: 320px;
+        max-height: 350px;
         overflow-y: scroll;
         margin-left: 63px;
         margin-right: 120px;
+        position: relative;
+        z-index: 1;
+        margin-top: -9px;
+        right: 0px;
+        width: 210px;
     }
 }
 
-.autocomplete-item{
+.autocomplete-item {
     padding: 10px;
     cursor: pointer;
 }
-.loader{
+
+.loader {
     padding: 15px;
+    position: relative;
 }
+
 .spinner {
     width: 1.5rem;
     height: 1.5rem;
     border-width: 0.2em;
     color: blue;
-  }
+}
