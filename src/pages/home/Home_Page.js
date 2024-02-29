@@ -6,19 +6,14 @@ import Search_Bar from "../../components/Search_Bar";
 import Stock_Data from "./Stock_Data";
 
 function Home_Page() {
-  const [symbolToPass, setSymbolToPass] = useState('');
-  const handleSymbolSelect = (symbol) => {
-    setSymbolToPass(symbol);
-  };
   return (
     <div>
     <Blue_Header/>
     <Main_Text/>
-    <Search_Bar onSymbolSelect={handleSymbolSelect}/>
-    <Stock_Data symbolToPass={symbolToPass}/>
+    <Search_Bar/>
+    <Stock_Data />
     <Footer/>
     </div>
   );
 }
-
 export default Home_Page

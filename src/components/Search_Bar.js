@@ -4,19 +4,21 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { BsSearch, BsX } from 'react-icons/bs';
 import './Search_Bar.css';
 import Spinner from 'react-bootstrap/Spinner';
+import { useNavigate } from 'react-router-dom';
 
-function Search_Bar({onSymbolSelect}) {
+function Search_Bar() {
   const [ticker, setTicker] = useState('');
   const [loading, setLoading] = useState(false);
   const [dropdownData, setDropdownData] = useState([]);
   const [itemSelected, setItemSelected] = useState(false);
+  const navigate = useNavigate();
 
   function ResultClick(symbol) {
     setTicker(symbol);
     setItemSelected(true);
     setDropdownData([]);
     setLoading(false);
-    onSymbolSelect(symbol);
+    navigate(`/search/${symbol}`);
   }
 
   useEffect(() => {
@@ -62,6 +64,7 @@ function Search_Bar({onSymbolSelect}) {
               setItemSelected(false);
               setDropdownData([]);
               setLoading(false);
+              navigate(`/search/home`);
             }}
           />
         </Form.Group>

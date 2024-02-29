@@ -2,8 +2,12 @@
   background-color: #19239A;
 }
 
-.stock_navbar a,.stock_navbar a:hover, .stock_navbar .navbar_brand:hover, .stock_navbar .navbar_brand {
-  color: white;
+.stock_navbar a:hover, .stock_navbar .navbar_brand:hover, .stock_navbar .navbar_brand {
+  color: #e0e1f1;
+}
+
+.stock_navbar a, .stock_navbar a:active{
+color:#777AC0
 }
 
 .stock_navbar .navbar_toggle{
@@ -19,11 +23,14 @@
 }
 
 .stock_navbar .active {
-  border: 2px solid white;
+  border: 2px solid #777AC0;
   border-radius: 15px;
 }
-
+.stock_navbar .navbar-nav .nav-link.active{
+  color: #777AC0;
+}
 .stock_navbar .nav-link {
+  color: #777AC0;
   text-align: center;
   width: 100px;
 }

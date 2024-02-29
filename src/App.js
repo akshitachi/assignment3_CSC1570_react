@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./App.css";
 import Home_Page from "./pages/home/Home_Page";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 function App() {
-  // const [message, setMessage] = useState("");
-
-  // useEffect(() => {
-  //   fetch("http://localhost:8080/message")
-  //     .then((res) => res.json())
-  //     .then((data) => setMessage(data.message));
-  // }, []);
 
   return (
-    <Home_Page/>
+    <div>
+      <Routes>
+        <Route path="/" element={<Navigate to="/search/home" />} />
+        <Route path="/search/home" element={<Home_Page />} />
+        <Route path="/search/:ticker" element={<Home_Page />} />
+      </Routes>
+    </div>
   );
 }
 
