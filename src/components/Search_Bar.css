@@ -105,3 +105,22 @@ input[type="search"]::-webkit-search-cancel-button {
     border-width: 0.2em;
     color: blue;
 }
+
+.no-results{
+    background-color: #f4dedf;
+    width: 1300px;
+    margin-top: 80px;
+    text-align: center;
+    padding-top: 17px;
+    height: 63px;
+    border-radius: 7px;
+    border: 2px solid #f1c3c4;
+}
+
+@media (max-width: 768px) {
+    .no-results {
+        width: 350px;
+        height: 63px;
+        
+    }
+}

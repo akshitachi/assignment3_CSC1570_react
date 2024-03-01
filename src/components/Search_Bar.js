@@ -19,7 +19,9 @@ function Search_Bar() {
     setItemSelected(true);
     setDropdownData([]);
     setLoading(false);
+    console.log(pageChange);
     setPageChange(true);
+    console.log(pageChange);
     navigate(`/search/${symbol}`);
   }
 
@@ -86,7 +88,7 @@ function Search_Bar() {
         )}
       </div>
       <div>
-        {(!loading && dropdownData.length === 0 && ticker && !pageChange) && <div className='no-results'>No results found</div>}
+        {(!loading && dropdownData.length === 0 && ticker && !pageChange) && <div className='no-results'>No data found. Please enter a valid Ticker</div>}
       </div>
       </Form>
   );
