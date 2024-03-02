@@ -4,12 +4,20 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useNavigate } from 'react-router-dom';
+import { useSearchResult } from './State/SearchResultContext';
 
-function Blue_Header() {
-    const [activeLink, setActiveLink] = useState('search');
+function Blue_Header({activeLinkText}) {
+    const [activeLink, setActiveLink] = useState(activeLinkText);
+    const navigate = useNavigate();
+    const { searchResults } = useSearchResult();
 
     const handleLinkClick = (link) => {
         setActiveLink(link);
+        if(link === 'search' && searchResults.ticker) {navigate(`/search/${searchResults.ticker}`);}
+        else if(link === 'search') {navigate('/search/home');}
+        else if(link === 'watchlist') {navigate('/watchlist');}
+        else if(link === 'portfolio') {navigate('/portfolio');}
     };
 
     return (

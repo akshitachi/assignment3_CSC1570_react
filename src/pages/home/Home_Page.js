@@ -8,10 +8,10 @@ import Stock_Data from "./Stock_Data";
 function Home_Page() {
   return (
     <div>
-    <Blue_Header/>
+    <Blue_Header activeLinkText={"search"}/>
     <Main_Text/>
     <Search_Bar/>
-    <Stock_Data />
+    <Stock_Data/>
     <Footer/>
     </div>
   );

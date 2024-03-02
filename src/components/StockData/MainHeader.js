@@ -1,8 +1,8 @@
 import React from 'react'
 import './MainHeader.css';
-function MainHeader({stockData}) {
-    const jsonStockData = JSON.parse(stockData);
-    const stockFinalData = jsonStockData.stockData;
+function MainHeader({searchResults}) {
+    const jsonStockData = JSON.parse(searchResults);
+    const stockFinalData = jsonStockData.searchResults;
   return (
     <div className='column1'>
       <div className='row1'>
