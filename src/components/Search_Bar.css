@@ -18,7 +18,7 @@
 }
 
 .input-field:focus {
-    border-color: initial;
+    border-color: #19239A;
 }
 
 .search-field .clear-icon {
@@ -53,6 +53,7 @@ input[type="search"]::-webkit-search-cancel-button {
     border-radius: 40px;
     border-color: #19239A;
     border-width: 3px;
+    box-shadow: none !important;
 }
 
 .results-list {

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import MainHeader from "../../components/StockData/MainHeader";
 import "./Stock_Data.css";
+import CompanyLogo from "../../components/StockData/CompanyLogo";
+import Price from "../../components/StockData/Price";
 
 function Stock_Data() {
   const { ticker } = useParams();
@@ -32,6 +34,8 @@ function Stock_Data() {
   return (
     <div className="stock-main">
       <MainHeader stockData={JSON.stringify({stockData})}/>
+      <CompanyLogo logoUrl={stockData.logo}/>
+      <Price />
     </div>
   );
 }
