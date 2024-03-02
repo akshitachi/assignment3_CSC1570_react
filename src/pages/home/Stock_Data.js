@@ -1,16 +1,37 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import MainHeader from "../../components/StockData/MainHeader";
+import "./Stock_Data.css";
 
 function Stock_Data() {
   const { ticker } = useParams();
   console.log(ticker);
-  if (ticker === undefined) {
-    return null;
+  const [stockData, setStockData] = useState(null);
+
+  useEffect(() => {
+    fetch(`http://localhost:8080/search/${ticker}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      .then(response => response.json())
+        .then(data => {
+          
+          setStockData(data);
+        })
+        .catch(error => {
+          console.error(error);
+        });
+  }, [ticker]); 
+
+  if (ticker === undefined || stockData === null) {
+    return null; 
   }
-  
+
   return (
-    <div>
-      <h2>Stock Data for {ticker}</h2>
+    <div className="stock-main">
+      <MainHeader stockData={JSON.stringify({stockData})}/>
     </div>
   );
 }
