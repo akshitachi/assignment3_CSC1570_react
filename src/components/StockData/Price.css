@@ -1,0 +1,38 @@
+.price{
+    margin-left: 250px;
+    text-align: center;
+}
+
+.lastPrice{
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.priceChanges{
+    display: flex;
+    flex-direction: row;
+}
+.change {
+    font-size: 23px;
+    font-weight: bold;
+    margin-right: 10px;
+
+}
+.percent{
+    font-size: 23px;
+    font-weight: bold;
+}
+  
+  .triangle {
+    font-size: 20px;
+    margin-right: 5px;
+  }
+  
+  .up {
+    color: green;
+  }
+  
+  .down {
+    color: red;
+  }
+  

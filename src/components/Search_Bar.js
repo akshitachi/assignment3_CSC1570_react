@@ -16,7 +16,6 @@ function Search_Bar() {
   const [pageChange, setPageChange] = useState(false);
   const { searchResults, updateSearchResults } = useSearchResult();
 
-
   function ResultClick(symbol) {
     setTicker(symbol);
     setItemSelected(true);

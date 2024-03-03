@@ -5,11 +5,12 @@ import "./Stock_Data.css";
 import CompanyLogo from "../../components/StockData/CompanyLogo";
 import Price from "../../components/StockData/Price";
 import { useSearchResult } from "../../components/State/SearchResultContext";
+import { useQuoteResults } from "../../components/State/QuoteResultContext";
 
 function Stock_Data({}) {
   const { ticker } = useParams();
   const { searchResults, updateSearchResults } = useSearchResult();
-  console.log("searchResults: ", searchResults);
+  const { updateQuoteResults } = useQuoteResults();
   useEffect(() => {
     if(searchResults==null || searchResults.ticker==null)
     fetch(`http://localhost:8080/search/${ticker}`, {
@@ -20,7 +21,8 @@ function Stock_Data({}) {
       })
       .then(response => response.json())
         .then(data => {
-          updateSearchResults(data);
+          updateSearchResults(data.profile);
+          updateQuoteResults(data.quote);
         })
         .catch(error => {
           console.error(error);
@@ -36,7 +38,7 @@ function Stock_Data({}) {
     <div className="stock-main">
       <MainHeader searchResults={JSON.stringify({searchResults})}/>
       <CompanyLogo logoUrl={searchResults.logo}/>
-      <Price />
+      <Price/>
     </div>
   );
 }
