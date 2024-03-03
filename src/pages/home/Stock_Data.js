@@ -6,6 +6,7 @@ import CompanyLogo from "../../components/StockData/CompanyLogo";
 import Price from "../../components/StockData/Price";
 import { useSearchResult } from "../../components/State/SearchResultContext";
 import { useQuoteResults } from "../../components/State/QuoteResultContext";
+import MarketStatus from "../../components/StockData/MarketStatus";
 
 function Stock_Data({}) {
   const { ticker } = useParams();
@@ -35,10 +36,13 @@ function Stock_Data({}) {
   
 
   return (
+    <div className="stock-column">
     <div className="stock-main">
       <MainHeader searchResults={JSON.stringify({searchResults})}/>
       <CompanyLogo logoUrl={searchResults.logo}/>
       <Price/>
+    </div>
+    <MarketStatus/>
     </div>
   );
 }
