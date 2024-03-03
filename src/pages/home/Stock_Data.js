@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import MainHeader from "../../components/StockData/MainHeader";
 import "./Stock_Data.css";
@@ -7,6 +7,7 @@ import Price from "../../components/StockData/Price";
 import { useSearchResult } from "../../components/State/SearchResultContext";
 import { useQuoteResults } from "../../components/State/QuoteResultContext";
 import MarketStatus from "../../components/StockData/MarketStatus";
+import MaterialTab from "../../components/StockData/MaterialTab/MaterialTab";
 
 function Stock_Data({}) {
   const { ticker } = useParams();
@@ -43,6 +44,7 @@ function Stock_Data({}) {
       <Price/>
     </div>
     <MarketStatus/>
+    <MaterialTab/>
     </div>
   );
 }

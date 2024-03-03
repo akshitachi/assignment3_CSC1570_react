@@ -4,3 +4,11 @@
     margin-top: 40px;
     font-weight: bold;
 }
+@media (max-width: 844px) {
+    .marketStatus{
+        display: flex;
+        justify-content: center;
+        margin-top: 13px;
+        font-size: 15px;
+    }
+}

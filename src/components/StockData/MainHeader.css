@@ -17,7 +17,8 @@
 .companyName{
     font-size: 30px;
     color: grey;
-    margin-left: 50px;
+    display: flex;
+    justify-content: center;
 }
 .buy_button{
     background-color: #449062;
@@ -26,4 +27,26 @@
     padding: 8px 20px;
     border-radius: 7px;
     margin-left: 80px;
+}
+
+@media (max-width: 844px) {
+    .ticker_text {
+        font-size: 27px;
+    margin-right: 10px;
+margin-left: 22px;
+    }
+    .favorite_icon {
+        width: 22px;
+    }
+    .companyName {
+       font-size: 20px;
+    }
+    .exchange {
+        font-size: 16px;
+        display: flex;
+       text-align: center;
+    }
+    .buy_button {
+    margin-left: 30px;
+    }
 }

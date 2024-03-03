@@ -3,6 +3,13 @@
     flex-direction: row;  
     justify-content: center;
 }
+@media (max-width: 844px) {
+    .stock-main{
+        display: flex;
+        flex-direction: row;  
+        justify-content: start;
+    }
+}
 
 .stock-column{
     margin-top: 40px;

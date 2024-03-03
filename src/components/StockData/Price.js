@@ -21,9 +21,14 @@ function Price() {
     .getSeconds()
     .toString()
     .padStart(2, '0')}`;
-    const roundedC = quoteResult.c.toFixed(2);
-    const roundedD = quoteResult.d.toFixed(2);
-    const roundedDp = quoteResult.dp.toFixed(2);
+    var roundedD = 0;
+    var roundedC = 0;
+    var roundedDp = 0;
+    if(quoteResult.d!=null && quoteResult.c!=null && quoteResult.dp!=null){
+      roundedD = quoteResult.d.toFixed(2);
+      roundedC = quoteResult.c.toFixed(2);
+      roundedDp = quoteResult.dp.toFixed(2);
+    }
   return (
     <div className='price'>
       <div className='lastPrice' style={{ color: changeColor }}>
