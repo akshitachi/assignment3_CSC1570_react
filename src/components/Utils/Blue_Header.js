@@ -5,7 +5,7 @@ import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate } from 'react-router-dom';
-import { useSearchResult } from './State/SearchResultContext';
+import { useSearchResult } from '../State/SearchResultContext';
 
 function Blue_Header({activeLinkText}) {
     const [activeLink, setActiveLink] = useState(activeLinkText);

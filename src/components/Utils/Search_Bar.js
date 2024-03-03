@@ -5,7 +5,7 @@ import { BsSearch, BsX } from 'react-icons/bs';
 import './Search_Bar.css';
 import Spinner from 'react-bootstrap/Spinner';
 import { useNavigate } from 'react-router-dom';
-import { useSearchResult } from './State/SearchResultContext';
+import { useSearchResult } from '../State/SearchResultContext';
 
 function Search_Bar() {
   const [ticker, setTicker] = useState('');
