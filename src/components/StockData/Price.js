@@ -21,14 +21,16 @@ function Price() {
     .getSeconds()
     .toString()
     .padStart(2, '0')}`;
-
+    const roundedC = quoteResult.c.toFixed(2);
+    const roundedD = quoteResult.d.toFixed(2);
+    const roundedDp = quoteResult.dp.toFixed(2);
   return (
     <div className='price'>
       <div className='lastPrice' style={{ color: changeColor }}>
-        {quoteResult.c}
+        {roundedC}
       </div>
       <div className='priceChanges'>
-        {quoteResult.d !== 0 && (
+        {roundedD !== 0 && (
           <div
             className={`triangle ${triangleDirection}`}
             style={{ color: changeColor }}
@@ -37,10 +39,10 @@ function Price() {
           </div>
         )}
         <div className='change' style={{ color: changeColor }}>
-          {quoteResult.d}
+          {roundedD}
         </div>
         <div className='percent' style={{ color: changeColor }}>
-          ({quoteResult.dp}%)
+          ({roundedDp}%)
         </div>
       </div>
       <div className='date'>{formattedDate}</div>
