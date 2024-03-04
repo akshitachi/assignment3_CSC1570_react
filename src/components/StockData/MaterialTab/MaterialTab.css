@@ -1,0 +1,86 @@
+.tabs{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 200px;
+    margin-right: 200px;
+    margin-top: 35px;
+    text-align: center;
+}
+
+
+.tabactive{
+    color: #737EAA;
+    font-family: "hecia", sans-serif;
+    text-align: center;
+    border-bottom: 2px solid #737EAA;
+    width: 350px;
+    padding: 15px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+
+.tabfalse{
+    font-family: "hecia", sans-serif;
+    color:#ACADAF;
+    display: flex;
+    justify-content: center;
+    border-bottom: none;
+    width: 350px;
+    padding: 15px;
+    font-size: 15px;
+    font-weight: bold;
+}
+.tabfalse:hover{
+    background-color: #F0EFF8;
+    cursor: pointer;
+}
+.tabactive:hover{
+    cursor: pointer;
+}
+
+@media (max-width: 844px) {
+    .swiper1{
+        display: block !important;
+        margin-top: 20px;
+        width: 390px;
+    }
+    .swiper-slide{
+        width: 96px !important;
+        margin-left: 32px !important;
+    }
+    .tabs{
+        display: none;
+    }
+    .tabactive{
+        width: 60px;
+        padding: 10px;
+    }
+    .tabfalse{
+        width: 60px;
+        padding: 10px;
+    }
+    
+    .swiper-button-prev::after{  
+        color: black !important;
+        font-size:14px !important;
+        font-weight: bold;
+    } 
+    .swiper-button-next::after{   
+        color: black !important;
+        font-size:14px !important;
+        font-weight: bold;
+    }
+}
+
+.arrow {
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    margin-top: 10px;
+}
+.swiper1{
+    display: none;
+}
+
