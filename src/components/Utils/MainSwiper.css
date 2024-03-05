@@ -1,0 +1,29 @@
+@media (min-width: 845px) {
+    .MuiTabs-flexContainer.css-heg063-MuiTabs-flexContainer{
+        margin-top: 40px;
+        display: flex;
+        justify-content: center;
+    }
+    
+    .MuiButtonBase-root.MuiTab-root.MuiTab-textColorPrimary.Mui-selected.css-1h9z7r5-MuiButtonBase-root-MuiTab-root{
+        text-transform: none;
+        color: #737EAA;
+        font-family: "hecia", sans-serif;
+        text-align: center;
+        border-bottom: 2px solid #737EAA;
+        width: 350px;
+        padding: 15px;
+        font-size: 15px;
+        font-weight: bold;
+    }
+    
+    .MuiButtonBase-root.MuiTab-root.MuiTab-textColorPrimary.css-1h9z7r5-MuiButtonBase-root-MuiTab-root{
+        text-transform: none;
+        font-family: "hecia", sans-serif;
+        text-align: center;
+        width: 350px;
+        padding: 15px;
+        font-size: 15px;
+        font-weight: bold;
+    }
+}
