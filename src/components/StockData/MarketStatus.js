@@ -4,7 +4,10 @@ import './MarketStatus.css';
 
 function MarketStatus  () {
   const { quoteResult } = useQuoteResults();
-  const currentTime = new Date().getTime();
+  var currentTime = new Date().getTime();
+currentTime = currentTime.toString();
+    currentTime = currentTime.slice(0, -3);
+    currentTime = parseInt(currentTime);
 
   const currentDate = new Date().toLocaleString('en-US', {
     year: 'numeric',
@@ -20,7 +23,8 @@ const formattedDateString = `${formattedDate.getFullYear()}-${(formattedDate.get
 
 const isMarketOpen = () => {
     const lastTimestamp = new Date(quoteResult.t).getTime();
-    const timeDifference = (currentTime - lastTimestamp) / (1000 * 60);
+    const timeDifference = (currentTime - lastTimestamp)/60;
+    console.log("Time difference: ",timeDifference);
     return timeDifference <= 5;
 };
 
