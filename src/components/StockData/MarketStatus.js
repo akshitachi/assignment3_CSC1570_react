@@ -1,13 +1,15 @@
 import React from 'react'
-import { useQuoteResults } from '../State/QuoteResultContext';
 import './MarketStatus.css';
+import { useSearchResult } from '../State/SearchResultContext';
 
 function MarketStatus  () {
-  const { quoteResult } = useQuoteResults();
+  const {searchResults} = useSearchResult();
+  const quoteResult = searchResults.quote;
+
   var currentTime = new Date().getTime();
-currentTime = currentTime.toString();
-    currentTime = currentTime.slice(0, -3);
-    currentTime = parseInt(currentTime);
+  currentTime = currentTime.toString();
+  currentTime = currentTime.slice(0, -3);
+  currentTime = parseInt(currentTime);
 
   const currentDate = new Date().toLocaleString('en-US', {
     year: 'numeric',
@@ -24,7 +26,7 @@ const formattedDateString = `${formattedDate.getFullYear()}-${(formattedDate.get
 const isMarketOpen = () => {
     const lastTimestamp = new Date(quoteResult.t).getTime();
     const timeDifference = (currentTime - lastTimestamp)/60;
-    console.log("Time difference: ",timeDifference);
+
     return timeDifference <= 5;
 };
 

@@ -1,0 +1,34 @@
+.stockSummaryoverall{
+    margin-left: 230px;
+}
+span{
+    font-weight: bold;
+}
+.aboutthecompany{
+    text-decoration: underline;
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+.about{
+    margin-top: 30px;
+    text-align: center;
+    width: 450px;
+}
+
+.peers{
+    margin-top: 10px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.stockSummary{
+    display: flex;
+    flex-direction: row;
+}
+.item{
+    margin-top: 10px;
+}
+.item2{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

@@ -1,10 +1,10 @@
 import React from 'react';
 import './Price.css';
-import { useQuoteResults } from '../State/QuoteResultContext';
+import { useSearchResult } from '../State/SearchResultContext';
 
 function Price() {
-  const { quoteResult } = useQuoteResults();
-
+  const { searchResults } = useSearchResult();
+  const quoteResult = searchResults.quote;
   const changeColor = quoteResult.d > 0 ? 'green' : 'red';
 
   const triangleDirection = quoteResult.d > 0 ? 'up' : 'down';

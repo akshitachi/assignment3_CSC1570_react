@@ -5,14 +5,12 @@ import "./Stock_Data.css";
 import CompanyLogo from "../../components/StockData/CompanyLogo";
 import Price from "../../components/StockData/Price";
 import { useSearchResult } from "../../components/State/SearchResultContext";
-import { useQuoteResults } from "../../components/State/QuoteResultContext";
 import MarketStatus from "../../components/StockData/MarketStatus";
 import MaterialTab from "../../components/StockData/MaterialTab/MaterialTab";
 
 function Stock_Data({}) {
   const { ticker } = useParams();
   const { searchResults, updateSearchResults } = useSearchResult();
-  const { updateQuoteResults } = useQuoteResults();
   useEffect(() => {
     if(searchResults==null || searchResults.ticker==null)
     fetch(`http://localhost:8080/search/${ticker}`, {
@@ -23,8 +21,7 @@ function Stock_Data({}) {
       })
       .then(response => response.json())
         .then(data => {
-          updateSearchResults(data.profile);
-          updateQuoteResults(data.quote);
+          updateSearchResults(data);
         })
         .catch(error => {
           console.error(error);
@@ -34,17 +31,18 @@ function Stock_Data({}) {
   if (ticker === undefined || searchResults === null || searchResults.ticker === null){
     return null; 
   }
-  
+  console.log(searchResults.profile);
+   const profile = searchResults.profile;
 
   return (
     <div className="stock-column">
     <div className="stock-main">
-      <MainHeader searchResults={JSON.stringify({searchResults})}/>
-      <CompanyLogo logoUrl={searchResults.logo}/>
+      <MainHeader searchResults={JSON.stringify({profile})}/>
+       <CompanyLogo logoUrl={profile.logo}/>
       <Price/>
     </div>
     <MarketStatus/>
-    <MaterialTab/>
+    <MaterialTab/> 
     </div>
   );
 }
