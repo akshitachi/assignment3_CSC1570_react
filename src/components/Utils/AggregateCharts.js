@@ -28,21 +28,25 @@ const options = {
         text: 'AAPL Hourly Price Variation'
     },
     xAxis: {
-        type: 'category'
-    },
-    series: [
-        {
-            name: '',
+        type: 'category',
+        title:'',
+        },
+        yAxis:{
+        opposite:true,
+        title:'',
+        },
+        series: [
+        {   
+            name:'',
             data: latestChartData,
             type: 'line',
-
             tooltip: {
-                valueDecimals: 2
+            valueDecimals: 2
             },
             marker:false
         }
-    ]
-};
+        ]
+    };
 
   return (
     <HighchartsReact highcharts={Highcharts} options={options} />

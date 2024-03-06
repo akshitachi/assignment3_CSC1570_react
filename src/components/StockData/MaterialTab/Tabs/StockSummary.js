@@ -7,6 +7,7 @@ function StockSummary () {
 
   const { searchResults } = useSearchResult();
   const quoteResult = searchResults.quote;
+  console.log(quoteResult);
   const peersResult = searchResults.peers;
   return (
     <div className='stockSummary'>
@@ -17,9 +18,9 @@ function StockSummary () {
       <div><span>Prev. Close: </span>{quoteResult.pc}</div>
       <div className='about'>
         <div className='aboutthecompany'>About the company</div>
-        <div className='item'><span>IPO Start Date: </span>{searchResults.ipo}</div>
-        <div className='item2'><span>Industry: </span>{searchResults.finnhubIndustry}</div>
-        <span className='item'>Webpage: </span><a className='item' href={searchResults.weburl} target='_blank'>{searchResults.weburl}</a>
+        <div className='item'><span>IPO Start Date: </span>{searchResults.profile.ipo}</div>
+        <div className='item2'><span>Industry: </span>{searchResults.profile.finnhubIndustry}</div>
+        <span className='item'>Webpage: </span><a className='item' href={searchResults.profile.weburl} target='_blank'>{searchResults.profile.weburl}</a>
         <div className='peers'>Company peers:</div>
         <div>{peersResult.map((peer) => <a key={peer} href={`/search/${peer}`}>{peer} </a>)}</div>
       </div>
