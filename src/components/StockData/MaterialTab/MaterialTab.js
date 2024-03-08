@@ -6,15 +6,6 @@ import ScrollableTabsButtonVisible from '../../Utils/Swiper';
 import LabTabs from '../../Utils/MainSwiper';
 
 function MaterialTab() {
-    const [activeTab, setActiveTab] = useState(1);
-    const [value, setValue] = React.useState(0);
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
-    const handleTabClick = (tabNumber) => {
-        setActiveTab(tabNumber);
-    };
 
     return (
         <div className='swiper2'>

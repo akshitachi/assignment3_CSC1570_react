@@ -7,6 +7,7 @@ import './Swiper.css';
 import TabPanel from '@mui/lab/TabPanel';
 import TabContext from '@mui/lab/TabContext';
 import StockSummary from '../StockData/MaterialTab/Tabs/StockSummary';
+import TopNews from '../StockData/MaterialTab/Tabs/TopNews';
 
 export default function ScrollableTabsButtonVisible() {
   const [value, setValue] = React.useState('1');
@@ -42,7 +43,7 @@ export default function ScrollableTabsButtonVisible() {
         <Tab label="Insights" value="4" sx={{ textTransform: 'none' }} />
       </Tabs>
       <TabPanel value="1"><StockSummary/></TabPanel>
-  <TabPanel value="2">Item Two</TabPanel>
+  <TabPanel value="2"><TopNews/></TabPanel>
   <TabPanel value="3">Item Three</TabPanel>
   <TabPanel value="4">Item Four</TabPanel>
     </Box>
