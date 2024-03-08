@@ -1,8 +1,22 @@
 .newsTab1{
+background-color: #F8F8F8;
     display: flex;
     flex-direction: row;
+    border: 1px solid #D8D8D8;
+    border-radius: 7px;
 }
 .imageNews{
-    width: 100px;
-    height: 100px;
+    padding: 14px;
+    border-radius: 7px;
+}
+
+.newsSource{
+    text-align: center;
+    width:489px;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+}
+.newsHeadline{
+    padding: 14px;
 }

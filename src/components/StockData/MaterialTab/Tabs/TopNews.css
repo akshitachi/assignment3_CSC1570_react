@@ -1,6 +1,9 @@
 .topNews {
     display: flex;
     flex-direction: column;
+    margin-left: 170px;
+    margin-right: 170px;
+    margin-bottom: 50px;
 }
 
 .row {

@@ -5,12 +5,16 @@ const NewsCard = ({item}) => {
     // const { searchResults } = useSearchResult();
     // const news = searchResults.news;
     
-  return (
+return (
     <div className='newsTab1'>
-        <img className="imageNews" src={item.image} />
-        <div>{item.headline}</div>
+        <div className="imageNews">
+            <img src={item.image} style={{ width: '130px', height: '70px', borderRadius: '7px' }} />
         </div>
-  )
+        <div className='newsSource'>
+            <div className='newsHeadline'>{item.headline}</div>
+        </div>
+    </div>
+)
 }
 
 export default NewsCard
