@@ -32,3 +32,22 @@ span{
     margin-top: 10px;
     margin-bottom: 10px;
 }
+
+@media (max-width: 768px) {
+    .stockSummaryoverall{
+        margin-left: 0px;
+    }
+    .stockSummaryheader{
+        margin-left: 75px;
+    }
+    .about{
+        width: 100%;
+    }
+    .stockSummary{
+        display: flex;
+        flex-direction: column;
+    }
+    .peerNames{
+        margin-bottom: 15px;
+    }
+}

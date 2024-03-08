@@ -1,7 +1,8 @@
 import {React} from 'react'
 import { useSearchResult } from '../State/SearchResultContext';
 import Highcharts from 'highcharts'
-import HighchartsReact from 'highcharts-react-official'
+import HighchartsReact from 'highcharts-react-official';
+import './AggregateCharts.css';
 
 function AggregateCharts  ()  {
     const { searchResults } = useSearchResult();
@@ -15,38 +16,89 @@ const formattedChartData = chartData.map(item => {
     return [timeString, item.c];
 });
 const latestChartData = formattedChartData.slice(-6);
-// const formattedChartData = chartData.map(item => {
-//     const date = new Date(item.t);
-//     const timeString = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }).replace(/(AM|PM)$/, '');
-//     return [timeString, item.c];
-// });
+
 const options = {
+    chart: {
+        backgroundColor: '#F8F8F8',
+        // height: 350,
+        // marginBottom: 0, // Add this line to remove space below x-axis
+    },
     rangeSelector: {
         selected: 1
     },
     title: {
-        text: 'AAPL Hourly Price Variation'
+        text: `${searchResults.profile.ticker} Hourly Price Variation`,
+        style: {
+            fontSize: '18px',
+            fontWeight:'bold',
+            color: 'grey'
+        }
     },
     xAxis: {
-        type: 'category',
-        title:'',
-        },
-        yAxis:{
-        opposite:true,
-        title:'',
-        },
-        series: [
-        {   
-            name:'',
+        type: 'datetime',
+        dateTimeLabelFormats: {
+            hour: '%H'
+        }
+    },
+    tooltip: {
+        // formatter: function () {
+        //     return `<span style="color:green">\u25CF</span>${searchResults.profile.ticker}: ` + Highcharts.numberFormat(this.y, 2);
+        // }
+    },
+    yAxis: {
+        opposite: true,
+        title: null  
+    },
+    series: [
+        {
+            name: '',
             data: latestChartData,
             type: 'line',
+            color: 'green',
             tooltip: {
-            valueDecimals: 2
+                valueDecimals: 2
             },
-            marker:false
-        }
-        ]
-    };
+            marker: false,
+            pointPlacement: 'on',
+            color: 'green',
+            showInLegend: false,
+        },
+        
+    ]
+};
+// const options = {
+//     chart: {
+//         type: 'line'
+//     },
+//     title: {
+//         text: `${searchResults.profile.ticker} Hourly Price Variation`,
+//                 style: {
+//                     fontSize: '18px',
+//                     fontWeight:'bold',
+//                     color: 'grey'
+//                 }
+//     },
+//     xAxis: {
+//         // type: 'datetime',
+//         // labels: {
+//         //     formatter: function () {
+//         //         return Highcharts.dateFormat('%H:%M', this.value);
+//         //     }
+//         // }
+//     },
+//     yAxis: {
+//         title: {
+//             text: 'Stock Value'
+//         },
+//         opposite:true,
+//     },
+//     series: [{
+//         name: 'Stock Price',
+//         data: latestChartData,
+//         marker:false,
+//         showInLegend: false,
+//     }]
+// };
 
   return (
     <HighchartsReact highcharts={Highcharts} options={options} />
