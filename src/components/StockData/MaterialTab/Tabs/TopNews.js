@@ -14,7 +14,7 @@ return (
             {news.map((item, index) => {
                 if (index % 2 === 0) {
                     return (
-                       <div className='item'>
+                       <div className='item5'>
                         <NewsCard item={item}/>
                         </div>
                     );
@@ -26,7 +26,7 @@ return (
             {news.map((item, index) => {
                 if (index % 2 !== 0) {
                     return (
-                       <div className='item'>
+                       <div className='item5'>
                         <NewsCard item={item}/>
                         </div>
                     );

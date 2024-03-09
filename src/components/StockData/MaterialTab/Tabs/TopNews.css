@@ -11,6 +11,16 @@
     flex-wrap: wrap;
 }
 
-.item {
+.item5 {
     width: 50%;
+}
+
+@media (max-width: 768px) {
+    .topNews {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+    .item5 {
+        width: 100%;
+    }
 }
