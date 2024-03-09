@@ -94,3 +94,14 @@ font-size: 14px;
     font-size: 16px;
     margin-bottom: 20px;
 }
+.modal-header .btn-close {
+    padding: 2px;
+    margin: calc(-.5 * var(--bs-modal-header-padding-y)) calc(-.5 * var(--bs-modal-header-padding-x)) calc(-.5 * var(--bs-modal-header-padding-y)) auto;
+    font-size: 10px;
+    border-bottom: 1px solid black;
+    border-radius: 0px;
+}
+
+.twitter-share{
+   color: black;
+}

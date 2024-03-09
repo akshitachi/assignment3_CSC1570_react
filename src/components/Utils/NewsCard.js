@@ -13,42 +13,45 @@ const NewsCard = ({ item }) => {
     month: 'long',
     day: 'numeric',
   });
+  const twitterShare = `https://twitter.com/intent/tweet?text=${item.headline}&url=${item.url}`;
+  const facebookShare = `https://www.facebook.com/sharer/sharer.php?u=${item.url}`;
 
-  return (
+return (
     <>
-      <div className="newsTab1" onClick={handleShow} style={{ cursor: 'pointer' }}>
-        <div className="imageNews">
-          <img src={item.image} className="imageActual" alt="News" />
-        </div>
-        <div className="newsSource">
-          <div className="newsHeadline">{item.headline}</div>
-        </div>
-      </div>
-      <Modal show={show} onHide={handleClose} animation={false}>
-        <Modal.Header closeButton>
-          <Modal.Title>
-            <div className="sourceNews">{item.source}</div>
-            <p className="datetimenews">{newsTime}</p>
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <h5 className="headlineNews">{item.headline}</h5>
-          <div className="summaryNews">{item.summary}</div>
-          <div className="newsurl">
-            For more details click <span><a target="_blank" rel="noopener noreferrer" href={item.url}>here</a></span>
-          </div>
-          <div className="sharePart">
-            <div className='sharetext'>Share</div>
-            <div className="socialMediaButtons">
-              <FontAwesomeIcon icon={faXTwitter} style={{ fontSize: '40px'}} />
-              <span style={{ marginLeft: '8px' }}></span>
-              <FontAwesomeIcon icon={faFacebookSquare} style={{ fontSize: '40px', color: '#0200F4' }} />
+        <div className="newsTab1" onClick={handleShow} style={{ cursor: 'pointer' }}>
+            <div className="imageNews">
+                <img src={item.image} className="imageActual" alt="News" />
             </div>
-          </div>
-        </Modal.Body>
-      </Modal>
+            <div className="newsSource">
+                <div className="newsHeadline">{item.headline}</div>
+            </div>
+        </div>
+        <Modal show={show} onHide={handleClose} animation={false}>
+            <Modal.Header closeButton>
+                <Modal.Title>
+                    <div className="sourceNews">{item.source}</div>
+                    <p className="datetimenews">{newsTime}</p>
+                </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <h5 className="headlineNews">{item.headline}</h5>
+                <div className="summaryNews">{item.summary}</div>
+                <div className="newsurl">
+                    For more details click <span><a target="_blank" rel="noopener noreferrer" href={item.url} style={{ color: '#7A9CDC' }}>here</a></span>
+                </div>
+                <div className="sharePart">
+                    <div className='sharetext'>Share</div>
+                    <div className="socialMediaButtons">
+                        <a target='_blank' className="twitter-share" href={twitterShare}><FontAwesomeIcon icon={faXTwitter} style={{ fontSize: '40px'}} /></a>
+                        <span style={{ marginLeft: '8px' }}></span>
+                        <a target='_blank' href={facebookShare}><FontAwesomeIcon icon={faFacebookSquare} style={{ fontSize: '40px', color: '#0200F4' }} /></a>
+                    </div>
+                </div>
+            </Modal.Body>
+        </Modal>
     </>
-  );
+);
 };
+
 
 export default NewsCard;
