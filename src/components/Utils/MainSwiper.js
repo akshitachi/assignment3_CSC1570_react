@@ -7,6 +7,8 @@ import TabPanel from '@mui/lab/TabPanel';
 import StockSummary from '../StockData/MaterialTab/Tabs/StockSummary';
 import './MainSwiper.css';
 import TopNews from '../StockData/MaterialTab/Tabs/TopNews';
+import Charts from '../StockData/MaterialTab/Tabs/Charts';
+import Insight from '../StockData/MaterialTab/Tabs/Insight';
 
 export default function LabTabs() {
   const [value, setValue] = React.useState('1');
@@ -28,8 +30,8 @@ export default function LabTabs() {
         </Box>
         <TabPanel value="1"><StockSummary/></TabPanel>
         <TabPanel value="2"><TopNews/></TabPanel>
-        <TabPanel value="3">Item Three</TabPanel>
-        <TabPanel value="4">Item Four</TabPanel>
+        <TabPanel value="3"><Charts/></TabPanel>
+        <TabPanel value="4"><Insight/></TabPanel>
 
       </TabContext>
     </Box>

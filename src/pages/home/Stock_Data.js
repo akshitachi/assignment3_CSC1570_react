@@ -31,7 +31,6 @@ function Stock_Data({}) {
   if (ticker === undefined || searchResults === null || searchResults.ticker === null){
     return null; 
   }
-  console.log(searchResults.profile);
    const profile = searchResults.profile;
 
   return (

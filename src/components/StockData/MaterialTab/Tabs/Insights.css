@@ -1,0 +1,21 @@
+.mainTextInsider {
+    font-size: 28px;
+    font-weight: 600;
+    color: #000;
+    margin-top: 0px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 30%;
+}
+
+th, td {
+    padding: 8px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+tr:last-child {
+    border-bottom: none;
+}

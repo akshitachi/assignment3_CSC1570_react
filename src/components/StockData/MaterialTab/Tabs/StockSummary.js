@@ -7,7 +7,6 @@ function StockSummary () {
 
   const { searchResults } = useSearchResult();
   const quoteResult = searchResults.quote;
-  console.log(quoteResult);
   const peersResult = searchResults.peers;
   return (
     <div className='stockSummary'>

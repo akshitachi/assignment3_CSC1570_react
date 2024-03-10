@@ -8,6 +8,8 @@ import TabPanel from '@mui/lab/TabPanel';
 import TabContext from '@mui/lab/TabContext';
 import StockSummary from '../StockData/MaterialTab/Tabs/StockSummary';
 import TopNews from '../StockData/MaterialTab/Tabs/TopNews';
+import Charts from '../StockData/MaterialTab/Tabs/Charts';
+import Insight from '../StockData/MaterialTab/Tabs/Insight';
 
 export default function ScrollableTabsButtonVisible() {
   const [value, setValue] = React.useState('1');
@@ -44,8 +46,8 @@ export default function ScrollableTabsButtonVisible() {
       </Tabs>
       <TabPanel value="1"><StockSummary/></TabPanel>
   <TabPanel value="2"><TopNews/></TabPanel>
-  <TabPanel value="3">Item Three</TabPanel>
-  <TabPanel value="4">Item Four</TabPanel>
+  <TabPanel value="3"><Charts/></TabPanel>
+  <TabPanel value="4"><Insight/></TabPanel>
     </Box>
     </TabContext>
   );
