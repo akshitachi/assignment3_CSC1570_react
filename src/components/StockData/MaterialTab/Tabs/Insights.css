@@ -19,3 +19,38 @@ th, td {
 tr:last-child {
     border-bottom: none;
 }
+
+.heading1{
+    font-weight: bold;
+}
+
+.rowInsights{
+    display: flex;
+    flex-direction: row;
+    margin-top: 30px;
+    justify-content: space-between;
+   margin-left: 150px;
+   margin-right: 150px;
+margin-bottom: 80px;
+}
+@media (max-width: 768px) {
+    
+    .mainTextInsider {
+        font-size: 22px;
+        font-weight: 600;
+        color: #000;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    table{
+        width: 100%;
+    }
+    .rowInsights{
+        flex-direction: column;
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+    .recommendationChart{
+        margin-bottom: 20px;
+    }
+}

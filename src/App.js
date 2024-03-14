@@ -5,10 +5,12 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import Portolio_Page from "./pages/portfolio/Portolio_Page";
 import Watchlist_Page from "./pages/watchlist/Watchlist_Page";
 import { SearchResultProvider } from "./components/State/SearchResultContext";
+import { TickerResultProvider } from "./components/State/TickerContext";
 
 function App() {
 
   return (
+    // <TickerResultProvider>
     <SearchResultProvider>
     <div>
       <Routes>
@@ -20,6 +22,7 @@ function App() {
       </Routes>
     </div>
     </SearchResultProvider>
+    //</TickerResultProvider>
   );
 }
 

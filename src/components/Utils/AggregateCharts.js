@@ -5,8 +5,8 @@ import HighchartsReact from 'highcharts-react-official';
 import './AggregateCharts.css';
 
 function AggregateCharts  ()  {
-//     const { searchResults } = useSearchResult();
-//     const chartData1 = searchResults.chartData.results;
+    const { searchResults } = useSearchResult();
+    const chartData1 = searchResults.chartData.results;
 //     const chartDataTobeFitted = chartData1.map(item => [item.t, item.c]);
 //     console.log(chartDataTobeFitted);
 
@@ -16,6 +16,31 @@ function AggregateCharts  ()  {
 //     return [timeString, item.c];
 // });
 // const latestChartData = formattedChartData.slice(-6);
+var hourlyChart = [];
+for(var i = 0 ; i < chartData1.length; i++){
+  let tempTime = new Date(chartData1[i].t);
+  let correct_time = tempTime.getTime();
+  hourlyChart.push([correct_time, chartData1[i].c]);
+}
+const options = {
+  title:{
+  text: searchResults.profile.ticker + " Hourly Price Variation"
+},
+yAxis: {opposite: true},
+xAxis: {
+  type: 'datetime',
+  // minTickInterval: 12
+},
+plotOptions:{
+
+},
+series: [{
+  name: searchResults.profile.ticker,
+  data: hourlyChart,
+  color: 'green',
+  type: 'line'
+}]
+};
 
 // const options = {
 //     chart: {
@@ -101,8 +126,8 @@ function AggregateCharts  ()  {
 // };
 
   return (
-    // <HighchartsReact highcharts={Highcharts} options={options} />
-    <div>Hello</div>
+    <HighchartsReact highcharts={Highcharts} options={options} />
+    // <div>Hello</div>
   )
 }
 
