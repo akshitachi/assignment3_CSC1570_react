@@ -1,6 +1,8 @@
 import React from 'react'
 import { useSearchResult } from '../../../State/SearchResultContext'
 import './Insights.css';
+import RecommendationChart from '../../../Utils/RecommendationChart';
+import EarningsCharts from '../../../Utils/EarningsCharts';
 function Insight () {
         const {searchResults} = useSearchResult();
         const insiderSentiment = searchResults.insiderSentiment;
@@ -24,24 +26,29 @@ function Insight () {
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Total</td>
+                        <td className='heading1'>Total</td>
                         <td>{totalMSPR}</td>
                         <td>{totalChange}</td>
                     </tr>
                     <tr>
-                        <td>Positive</td>
+                        <td className='heading1'>Positive</td>
                         <td>{positiveMSPR}</td>
                         <td>{positiveChange}</td>
                     </tr>
                     <tr>
-                        <td>Negative</td>
+                        <td className='heading1'>Negative</td>
                         <td>{negativeMSPR}</td>
                         <td>{negativeChange}</td>
                     </tr>
                 </tbody>
             </table>
             </center>
-            
+            <div className='rowInsights'>
+            <div className='recommendationChart'>
+<RecommendationChart/>
+</div>
+<EarningsCharts/>
+</div>
             </div>
     )
 }
