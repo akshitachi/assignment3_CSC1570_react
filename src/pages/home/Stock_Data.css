@@ -16,3 +16,76 @@
     display: flex;
     flex-direction: column;
 }
+.row1 {
+    display: flex;
+    flex-direction: row;
+}
+
+.column1 {
+    display: flex;
+    flex-direction: column;
+}
+.ticker_text{
+    margin-right: 16px;
+    margin-left: 30px;
+}
+.favorite_icon{
+    margin-bottom: 10px;
+}
+.companyName{
+    font-size: 30px;
+    color: grey;
+    display: flex;
+    justify-content: center;
+}
+.buy_button{
+    background-color: #449062;
+    color:white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 7px;
+    margin-left: 80px;
+}
+
+.messageFavorite{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    width: 1200px;
+    height: 60px;
+    background-color: #DBEAE2;
+    margin-left: 200px;
+    margin-right: 200px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+.messageFavorite.added{
+    background-color: #DBEAE2;
+    color: #449062;
+}
+.messageFavorite.removed{
+    background-color: #F4D2D2;
+    color: #D8000C;
+}
+
+@media (max-width: 844px) {
+    .ticker_text {
+        font-size: 27px;
+    margin-right: 10px;
+margin-left: 22px;
+    }
+    .favorite_icon {
+        width: 22px;
+    }
+    .companyName {
+       font-size: 20px;
+    }
+    .exchange {
+        font-size: 16px;
+        display: flex;
+       text-align: center;
+    }
+    .buy_button {
+    margin-left: 30px;
+    }
+}
