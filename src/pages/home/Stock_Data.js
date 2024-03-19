@@ -19,7 +19,7 @@ function Stock_Data({}) {
  
   const [showMessage, setShowMessage] = useState(false);
         useEffect(() => {
-          if (searchResults == null || searchResults.ticker == null) {
+          if (searchResults == null || searchResults.profile.ticker == null) {
             fetch(`http://localhost:8080/search/${ticker}`, {
               method: 'GET',
               headers: {
@@ -33,7 +33,6 @@ function Stock_Data({}) {
               .catch(error => {
                 console.error(error);
               });
-          }
           
           const checkFavorite = async () => {
             try {
@@ -49,6 +48,7 @@ function Stock_Data({}) {
           };
 
           checkFavorite();
+        }
         }, [ticker]);
         
   useEffect(() => {

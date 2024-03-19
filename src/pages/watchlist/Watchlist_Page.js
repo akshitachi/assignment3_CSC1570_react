@@ -28,7 +28,8 @@ import './Watchlist_Page.css';
         <Blue_Header activeLinkText={"watchlist"} />
         <div className='watchlist'>
         <h1 className='watchlistText'>My Watchlist</h1>
-        {watchlist.map(item => (
+        {watchlist.length === 0 ? <div className='watchlistnone'>Currently you don't have any stock in your watchlist.</div> : null}
+        {watchlist.length !== 0 && watchlist.map(item => (
           <Watchlist_Card key={item} ticker={item} />
         ))}
         </div>
