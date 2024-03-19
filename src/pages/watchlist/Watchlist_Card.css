@@ -1,0 +1,27 @@
+.watchlist_card{
+    width: 200px;
+}
+.watchlist_card2{
+    width: 100%;
+    height: 120px;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    padding-left: 20px;
+    cursor: pointer;
+   display: flex;
+   flex-direction: row; 
+}
+.pricesinWatchlist{
+    margin-top: 25px;
+    margin-left: 350px;
+}
+.watchlistD{
+    margin-right: 8px;
+    margin-left: 8px;
+}
+
+.clear-watchlist{
+    height: 20px;
+    width: 20px;
+}

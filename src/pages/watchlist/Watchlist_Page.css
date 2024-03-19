@@ -1,0 +1,17 @@
+.watchlist{
+    display: flex;
+    flex-direction: column;
+    margin-left: 250px;
+    margin-top: 50px;
+    margin-right: 350px;
+}
+
+.rowwatchlist{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.watchlistText{
+    margin-bottom: 30px;
+}
