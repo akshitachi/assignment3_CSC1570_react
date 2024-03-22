@@ -68,6 +68,20 @@
     color: #D8000C;
 }
 
+.buy_column{
+    display: flex;
+    flex-direction: row;
+width: 100%;
+    justify-content: space-between;
+}
+.buy_button2{
+    background-color: #449062;
+    color:white;
+    border: none;
+    padding: 5px 15px;
+    border-radius: 7px;
+}
+
 @media (max-width: 844px) {
     .ticker_text {
         font-size: 27px;

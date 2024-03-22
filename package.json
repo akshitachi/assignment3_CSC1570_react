@@ -19,6 +19,7 @@
     "bootstrap": "^5.3.3",
     "highcharts": "^9.3.3",
     "highcharts-react-official": "^3.2.1",
+    "mongoose": "^8.2.2",
     "react": "^18.2.0",
     "react-bootstrap": "^2.10.1",
     "react-dom": "^18.2.0",

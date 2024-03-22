@@ -20,6 +20,7 @@ var hourlyChart = [];
 for(var i = 0 ; i < chartData1.length; i++){
   let tempTime = new Date(chartData1[i].t);
   let correct_time = tempTime.getTime();
+  // let timeString = tempTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
   hourlyChart.push([correct_time, chartData1[i].c]);
 }
 const options = {

@@ -52,12 +52,12 @@ function Search_Bar() {
   return (
     <Form className="search-bar">
       <Form.Group className="search-field">
-        {searchResults && searchResults.ticker ? (
+        {searchResults && searchResults.profile.ticker ? (
           <Form.Control
             className="input-field"
             type="search"
             placeholder="Enter stock ticker symbol"
-            value={searchResults.ticker}
+            value={searchResults.profile.ticker}
             onChange={(e) => setTicker(e.target.value)}
           />
         ) : (
