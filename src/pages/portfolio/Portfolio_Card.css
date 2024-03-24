@@ -1,0 +1,96 @@
+.rowportfolio2{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    margin-top: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid grey; 
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.rowportfolio3{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    border-left: 1px solid grey; 
+    border-right: 1px solid grey; 
+    padding-left: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.portfolioName{
+    margin-left: 10px;
+    margin-top: 6px;
+    font-size: 21px;
+    font-weight: 600;
+    color: grey;
+}
+
+.portfolioTicker{
+    margin-left: 10px;
+}
+
+.labels{
+    font-size: 18px;
+    font-weight: 600;
+}
+.column2{
+    display: flex;
+    flex-direction: column;
+    margin-left: 190px;
+}
+.column3{
+    display: flex;
+    flex-direction: column;
+    margin-left: 150px;
+    margin-right: 200px;
+}
+
+.labels.green {
+    color: green;
+}
+
+.labels.red {
+    color: red;
+}
+
+.rowportolio5{
+    display: flex;
+    flex-direction: row;
+}
+
+.rowportfolio6{
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    margin-bottom: 3px;
+    background-color: #f9f9f9;
+    border: 1px solid grey; 
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.buy_button3{
+    background-color: #3777F6;
+    color: white;
+    border: none;
+    padding: 4px 13px;
+    border-radius: 7px;
+    margin-left: 10px;
+    height: 35px;
+    margin-top: 6px;
+}
+
+.sell_button2{
+    background-color: #CD4A53;
+    color: white;
+    border: none;
+    padding: 4px 13px;
+    border-radius: 7px;
+    margin-left: 10px;
+    height: 35px;
+    margin-top: 6px;
+}

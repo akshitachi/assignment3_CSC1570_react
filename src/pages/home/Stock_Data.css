@@ -44,7 +44,16 @@
     border: none;
     padding: 8px 20px;
     border-radius: 7px;
-    margin-left: 80px;
+    margin-left: 50px;
+}
+
+.sell_button{
+    background-color: #CD4A53;
+    color:white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 7px;
+    margin-left: 23px;
 }
 
 .messageFavorite{

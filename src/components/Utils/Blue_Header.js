@@ -14,7 +14,8 @@ function Blue_Header({activeLinkText}) {
 
     const handleLinkClick = (link) => {
         setActiveLink(link);
-        if(link === 'search' && searchResults) {navigate(`/search/${searchResults.profile.ticker}`);}
+        console.log(searchResults);
+        if(link === 'search' && searchResults!==undefined && searchResults) {navigate(`/search/${searchResults.profile.ticker}`);}
         else if(link === 'search') {navigate('/search/home');}
         else if(link === 'watchlist') {navigate('/watchlist');}
         else if(link === 'portfolio') {navigate('/portfolio');}

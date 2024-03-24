@@ -39,22 +39,28 @@ function Stock_Data({}) {
               .catch(error => {
                 console.error(error);
               });
-          
-          const checkFavorite = async () => {
-            try {
-              const response = await fetch(`http://localhost:8080/watchlistCheck/${ticker}`);
-              if (response.ok) {
-                setIsFavorite(true);
-              } else {
-                setIsFavorite(false);
-              }
-            } catch (error) {
-              console.error('Error checking ticker in watchlist:', error);
-            }
-          };
-
-          checkFavorite();
         }
+        const checkFavorite = async () => {
+          try {
+            const response = await fetch(`http://localhost:8080/watchlistCheck/${ticker}`);
+            if (response.ok) {
+              setIsFavorite(true);
+            } else {
+              setIsFavorite(false);
+            }
+          } catch (error) {
+            console.error('Error checking ticker in watchlist:', error);
+          }
+        };
+        checkFavorite();
+        fetch(`http://localhost:8080/checkPortfolio/${ticker}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }) .then(response => response.json()).then(data => {
+          setisPortfolio(data);
+        });
         }, [ticker]);
         
   useEffect(() => {
@@ -146,26 +152,18 @@ function Stock_Data({}) {
   }
    const handleShow = () => {
     setShow(true);
-    fetch(`http://localhost:8080/checkPortfolio/${profile.ticker}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }) .then(response => response.json()).then(data => {
-      setisPortfolio(data);
-    });
+    
   }
 
   const handleBuyClick = () => {
-    if(!isPortfolio){
     var newPortfolio = { 
-      totalCost: parseInt(quantity) * searchResults.quote.c,
+      totalCost: parseFloat(quantity) * searchResults.quote.c,
       ticker: profile.ticker,
-      quantity: parseInt(quantity),
+      quantity: parseFloat(quantity),
       name: profile.name,
       avgCost: searchResults.quote.c,
     };
-
+    if(!isPortfolio){
     fetch("http://localhost:8080/makeportfolio", {
       method: "POST",
       headers: {
@@ -183,7 +181,7 @@ function Stock_Data({}) {
       .catch((error) => {
         console.error(error);
       });
-    fetch(`http://localhost:8080/updateMoney/${money - (parseInt(quantity) * searchResults.quote.c)}`, {
+    fetch(`http://localhost:8080/updateMoney/${money - (parseFloat(quantity) * searchResults.quote.c)}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -200,8 +198,44 @@ function Stock_Data({}) {
         console.error(error);
       });
     }
+    else{
+        fetch(`http://localhost:8080/updatePortfolio/${profile.ticker}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(newPortfolio),
+        })
+          .then(response => {
+            if (response.ok) {
+              console.log('Portfolio updated successfully.');
+            } else {
+              console.error('Error updating portfolio.');
+            }
+          })
+          .catch(error => {
+            console.error(error);
+          });
+        fetch(`http://localhost:8080/updateMoney/${money - (parseFloat(quantity) * searchResults.quote.c)}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
+          .then(response => {
+            if (response.ok) {
+              console.log('Money updated successfully.');
+            } else {
+              console.error('Error updating money.');
+            }
+          })
+          .catch(error => {
+            console.error(error);
+          });
+    }
       handleClose();
       setShowMessagePortfolio(true);
+      setisPortfolio(true);
   };
 
   return (
@@ -226,14 +260,14 @@ function Stock_Data({}) {
               />
             </div>
           )}
-           {showMessagePortfolio && (
+          {showMessagePortfolio && (
             <div
               className={`messageFavorite ${
-                !isPortfolio ? "added" : "removed"
+                isPortfolio ? "added" : "removed"
               }`}
             >
               <span style={{ marginRight: 480, marginLeft: 450 }}>
-                {!isPortfolio
+                {isPortfolio
                   ? `${profile.ticker} bought successfully.`
                   : `${profile.ticker} sold successfully.`}
               </span>
@@ -267,9 +301,14 @@ function Stock_Data({}) {
               <h1 className="companyName">{searchResults.profile.name}</h1>
               <p className="exchange">{searchResults.profile.exchange}</p>
               <div className="row2">
-                <button className="buy_button" onClick={handleShow}>
+                <button className="buy_button" onClick={handleShow}> 
                   Buy
                 </button>
+                {isPortfolio && (
+                  <button className="sell_button" onClick={handleShow}>
+                    Sell
+                  </button>
+                )}
                 <Modal show={show} onHide={handleClose} animation={false}>
                   <Modal.Header closeButton>
                     <Modal.Title>
@@ -283,20 +322,23 @@ function Stock_Data({}) {
                       Quantity:
                       <input
                         type="number"
-                        value={parseInt(quantity)}
-                        onChange={(e) => setQuantity(parseInt(e.target.value))}
-                        style={{ width: "300px" }}
+                        value={parseFloat(quantity)}
+                        onChange={(e) => setQuantity(parseFloat(e.target.value))}
+                        style={{ width: "380px",marginLeft:7 }}
                         min={0}
                         max={9999}
                       />
+                      {money < parseFloat(quantity) * searchResults.quote.c && (
+                        <div style={{ color: "red", marginBottom:22,marginTop:7}}>Not enough money in wallet!</div>
+                      )}
                     </div>
                   </Modal.Body>
                   <Modal.Footer>
                     <div className="buy_column">
                       <div>
-                        Total: {quantity ? (parseInt(quantity) * searchResults.quote.c).toFixed(2) : 0}
-                      </div>
-                      <button className="buy_button2" onClick={handleBuyClick}>
+                        Total: {quantity ? (parseFloat(quantity) * searchResults.quote.c).toFixed(2) : 0}
+                      </div> 
+                      <button className="buy_button2" onClick={handleBuyClick} disabled={ (money < parseFloat(quantity) * searchResults.quote.c || quantity===0 || isNaN(quantity))} style={{ backgroundColor: (money < parseFloat(quantity) * searchResults.quote.c || quantity===0 ||isNaN(quantity)) ? "#85B99E" : "" }}>
                         Buy
                       </button>
                     </div>
