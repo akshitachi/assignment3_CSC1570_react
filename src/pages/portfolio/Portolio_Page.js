@@ -26,8 +26,11 @@ function Portolio_Page ()  {
         console.error(error);
         setLoading(false);
       })
+      .catch(error => {
+        console.error(error);
+      });
+      }, [portfolio]);
       
-  }, []);
   useEffect(() => {
     fetch(`http://localhost:8080/getportfolio`, {
       method: 'GET',
@@ -44,10 +47,9 @@ function Portolio_Page ()  {
         console.error(error);
       });
   }, [portfolio]);
-
+  
   return (
     <div>
-      
           <Blue_Header activeLinkText={"portfolio"}/>
           {loading ? (
        <center> <CircularProgress /> </center>
