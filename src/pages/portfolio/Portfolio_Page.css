@@ -22,3 +22,23 @@
     align-items: center;
     border: 1px solid #F7D488;
 }
+.messageFavorite2{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    width: 1150px;
+    height: 60px;
+    background-color: #DBEAE2;
+    margin-right: 200px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.messageFavorite2.added{
+    background-color: #DBEAE2;
+    color: #449062;
+}
+.messageFavorite2.removed{
+    background-color: #F4D2D2;
+    color: #D8000C;
+}

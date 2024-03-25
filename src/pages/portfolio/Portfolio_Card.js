@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import './Portfolio_Card.css';
 import Modal from 'react-bootstrap/Modal';
 
-const Portfolio_Card = ({quantity,avgCost,name,ticker,totalCost}) => {
+const Portfolio_Card = ({quantity,avgCost,name,ticker,totalCost,sendDataToParent}) => {
     const [quote, setQuote] = useState({});
     const [show, setShow] = useState(false);
+    const [show2, setShow2] = useState(false);
     const [money, setMoney] = useState(0);
     const [quantity2, setQuantity2] = useState(0);
     useEffect(() => {
@@ -39,12 +40,20 @@ const Portfolio_Card = ({quantity,avgCost,name,ticker,totalCost}) => {
             console.error(error);
           })
       }, []);
+
     const handleClose = () => {
         setQuantity2(0);
         setShow(false);
       }
        const handleShow = () => {
         setShow(true); 
+      }
+      const handleClose2 = () => {
+        setQuantity2(0);
+        setShow2(false);
+      }
+       const handleShow2 = () => {
+        setShow2(true); 
       }
 
       const handleBuyClick = () => {
@@ -90,6 +99,47 @@ const Portfolio_Card = ({quantity,avgCost,name,ticker,totalCost}) => {
               });
         
           handleClose();
+          setMoney(money - (parseFloat(quantity2) * quote.quote.c));
+          sendDataToParent(ticker,true);
+      };
+      const handleSellClick = () => {
+        fetch(`http://localhost:8080/sellPortfolio/${ticker}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ quantity: quantity2, price: quote.quote.c}),
+        })
+          .then(response => {
+            if (response.ok) {
+              console.log('Portfolio sold successfully.');
+            } else {
+              console.error('Error selling portfolio.');
+            }
+          })
+          .catch(error => {
+            console.error(error);
+          });
+          console.log(money);
+          fetch(`http://localhost:8080/updateMoney/${money + (parseFloat(quantity2) * quote.quote.c)}`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          })
+            .then(response => {
+              if (response.ok) {
+                console.log('Money updated successfully.');
+              } else {
+                console.error('Error updating money.');
+              }
+            })
+            .catch(error => {
+              console.error(error);
+            });
+            handleClose2();
+            setMoney(money + (parseFloat(quantity2) * quote.quote.c));
+            sendDataToParent(ticker,false);
       };
 return (
     <div className='portfolioCard'>
@@ -132,7 +182,7 @@ return (
         <button className="buy_button3" onClick={handleShow}>
                   Buy
                 </button>
-                  <button className="sell_button2">
+                  <button className="sell_button2" onClick={handleShow2}>
                     Sell
                   </button>
                   <Modal show={show} onHide={handleClose} animation={false}>
@@ -166,6 +216,42 @@ return (
                       </div> 
                       <button className="buy_button2" onClick={handleBuyClick} disabled={quote && quote.quote &&  (money < parseFloat(quantity2) * quote.quote.c || quantity2===0 || isNaN(quantity2))} style={{ backgroundColor: quote && quote.quote &&  (money < parseFloat(quantity2) * quote.quote.c || quantity2===0 ||isNaN(quantity2)) ? "#85B99E" : "" }}>
                         Buy
+                      </button>
+                    </div>
+                  </Modal.Footer>
+                </Modal>
+
+                <Modal show={show2} onHide={handleClose2} animation={false}>
+                  <Modal.Header closeButton>
+                    <Modal.Title>
+                      {ticker}
+                    </Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>
+                    <div>Current Price: {quote && quote.quote && quote.quote.c}</div>
+                    <div>Money in Wallet: ${money.toFixed(2)}</div>
+                    <div>
+                      Quantity:
+                      <input
+                        type="number"
+                        value={parseFloat(quantity2)}
+                        onChange={(e) => setQuantity2(parseFloat(e.target.value))}
+                        style={{ width: "380px",marginLeft:7 }}
+                        min={0}
+                        max={9999}
+                      />
+                      {quote && quote.quote && quantity < parseFloat(quantity2) && (
+                        <div style={{ color: "red", marginBottom:22,marginTop:7}}>You cannot sell the stocks you don't have!</div>
+                      )}
+                    </div>
+                  </Modal.Body>
+                  <Modal.Footer>
+                    <div className="buy_column">
+                      <div>
+                        Total: {quote && quote.quote && quantity2 ? (parseFloat(quantity2) * quote.quote.c).toFixed(2) : 0}
+                      </div> 
+                      <button className="buy_button2" onClick={handleSellClick} disabled={quote && quote.quote &&  (quantity < parseFloat(quantity2) || quantity2===0 || isNaN(quantity2))} style={{ backgroundColor: quote && quote.quote &&  (quantity < parseFloat(quantity2) || quantity2===0 ||isNaN(quantity2)) ? "#85B99E" : "" }}>
+                        Sell
                       </button>
                     </div>
                   </Modal.Footer>
