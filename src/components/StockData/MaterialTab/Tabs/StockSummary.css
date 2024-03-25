@@ -1,5 +1,6 @@
 .stockSummaryoverall{
     margin-left: 230px;
+    margin-right: 200px;
 }
 span{
     font-weight: bold;
@@ -24,6 +25,7 @@ span{
 .stockSummary{
     display: flex;
     flex-direction: row;
+    margin-bottom: 100px;
 }
 .item{
     margin-top: 10px;

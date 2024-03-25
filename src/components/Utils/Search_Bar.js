@@ -97,7 +97,8 @@ function Search_Bar() {
                 key={item.symbol}
                 onClick={() => ResultClick(item.symbol)}
               >
-                {item.symbol} | {item.description}
+              {item.symbol} | {item.description} 
+              {itemSelected && item.symbol === ticker && <span className="green-tick">&#10004;</span>}
               </div>
             ))}
           </div>

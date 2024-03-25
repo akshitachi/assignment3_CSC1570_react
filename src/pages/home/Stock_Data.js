@@ -12,6 +12,7 @@ import { faStar as faStarSolid } from '@fortawesome/free-solid-svg-icons';
 import { faX } from '@fortawesome/free-solid-svg-icons';
 import { CircularProgress } from '@mui/material';
 import Modal from 'react-bootstrap/Modal';
+import { useMarketResults } from "../../components/State/MarketStatusContext";
 
 function Stock_Data({}) {
   const { ticker } = useParams();
@@ -27,46 +28,64 @@ function Stock_Data({}) {
   const [isPortfolio, setisPortfolio] = useState(false);
   const [portfolio, setPortfolio] = useState([]);
   const [isPortfolio2, setisPortfolio2] = useState(false);
-
-        useEffect(() => {
-          if ((searchResults == null || searchResults.profile.ticker == null) && ticker !== undefined) {
-            fetch(`http://localhost:8080/search/${ticker}`, {
-              method: 'GET',
+  const {marketResult, setMarketResult} = useMarketResults();
+  useEffect(() => {
+    // console.log(marketResult);
+    const fetchData = async () => {
+      if (
+        (searchResults == null ||
+          searchResults.profile.ticker == null) &&
+        ticker !== undefined
+      ) {
+        try {
+          const response = await fetch(
+            `http://localhost:8080/search/${ticker}`,
+            {
+              method: "GET",
               headers: {
-                'Content-Type': 'application/json',
+                "Content-Type": "application/json",
               },
-            })
-              .then(response => response.json())
-              .then(data => {
-                updateSearchResults(data);
-              })
-              .catch(error => {
-                console.error(error);
-              });
-        }
-        const checkFavorite = async () => {
-          try {
-            const response = await fetch(`http://localhost:8080/watchlistCheck/${ticker}`);
-            if (response.ok) {
-              setIsFavorite(true);
-            } else {
-              setIsFavorite(false);
             }
-          } catch (error) {
-            console.error('Error checking ticker in watchlist:', error);
-          }
-        };
-        checkFavorite();
-        fetch(`http://localhost:8080/checkPortfolio/${ticker}`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }) .then(response => response.json()).then(data => {
-          setisPortfolio(data);
-        });
-        }, [ticker]);
-        
+          );
+          const data = await response.json();
+          updateSearchResults(data);
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    };
+
+    fetchData();
+    const checkFavorite = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:8080/watchlistCheck/${ticker}`
+        );
+        if (response.ok) {
+          setIsFavorite(true);
+        } else {
+          setIsFavorite(false);
+        }
+      } catch (error) {
+        console.error("Error checking ticker in watchlist:", error);
+      }
+    };
+    checkFavorite();
+    fetch(`http://localhost:8080/checkPortfolio/${ticker}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setisPortfolio(data);
+      });
+
+    // const interval = setInterval(fetchData, 5000); // Fetch data every 15 seconds
+
+    // return () => clearInterval(interval); // Cleanup interval on unmount
+  }, [ticker]);
   useEffect(() => {
     if (showMessage) {
       setTimeout(() => {

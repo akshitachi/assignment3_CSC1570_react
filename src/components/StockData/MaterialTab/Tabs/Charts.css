@@ -1,4 +1,4 @@
-.chart-indicator{
-
-    min-width: 310px;
+.chartOhlc{
+    display: flex;
+    justify-content: center;
 }

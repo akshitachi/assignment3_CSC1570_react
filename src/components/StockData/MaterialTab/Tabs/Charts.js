@@ -8,6 +8,7 @@ import VBP from 'highcharts/indicators/volume-by-price';
 import HCMA from 'highcharts/highcharts-more';
 import HSIndicators from "highcharts/indicators/indicators";
 import '../Tabs/Charts.css';
+import { useEffect } from 'react';
 HCMA(Highcharts); 
 
 HSIndicators(Highcharts);
@@ -18,6 +19,7 @@ IndicatorsCore(Highcharts);
 function Charts  () {
     const { searchResults } = useSearchResult();
     const ohlcData = searchResults.ohlc.results;
+    
     var ohlc = [];
     var volume = [];
     const dataLength = searchResults.ohlc.count;
@@ -42,6 +44,11 @@ function Charts  () {
         ]);
     }
     const options = {
+        chart: {
+            height: 700,
+            width: 1300,
+            backgroundColor: '#F8F8F8',
+        },
         rangeSelector: {
             selected: 2
         },
@@ -87,11 +94,14 @@ function Charts  () {
                 dataGrouping: {
                     units: groupingUnits
                 }
+            },
+            column: {
+                color: '#524EA0' 
             }
         },
         series: [{
             type: 'candlestick',
-            name: 'AAPL',
+            name: `${searchResults.profile.ticker}`,
             id: 'aapl',
             zIndex: 2,
             data: ohlc
@@ -119,12 +129,18 @@ function Charts  () {
             zIndex: 1,
             marker: {
                 enabled: false
-            }
+            },
+            color: '#C1907A'
         }]
     };
-
+    useEffect(() => {
+        Highcharts.stockChart('container5', options);
+    }, []);
     return (
-        <HighchartsReact className='chart-indicator' highcharts={Highcharts} options={options} style={{ height: '1000px' }} />
+        <div className='chartOhlc'>
+    <div id="container5"></div>
+    </div>
+
     );
 }
 

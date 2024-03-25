@@ -6,11 +6,13 @@ import Portolio_Page from "./pages/portfolio/Portolio_Page";
 import Watchlist_Page from "./pages/watchlist/Watchlist_Page";
 import { SearchResultProvider } from "./components/State/SearchResultContext";
 import { TickerResultProvider } from "./components/State/TickerContext";
+import { MarketResultProvider } from "./components/State/MarketStatusContext";
 
 function App() {
 
   return (
     // <TickerResultProvider>
+    <MarketResultProvider>
     <SearchResultProvider>
     <div>
       <Routes>
@@ -22,6 +24,7 @@ function App() {
       </Routes>
     </div>
     </SearchResultProvider>
+    </MarketResultProvider>
     //</TickerResultProvider>
   );
 }
