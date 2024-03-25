@@ -4,9 +4,10 @@ import Footer from '../../components/Utils/Footer';
 import { useEffect, useState } from 'react';
 import Watchlist_Card from './Watchlist_Card';
 import './Watchlist_Page.css';
+import { CircularProgress } from '@mui/material';
 
   function Watchlist_Page() {
-    const [watchlist, setWatchlist] = useState([]);
+    const [watchlist, setWatchlist] = useState(undefined);
     useEffect(() => {
       fetch(`http://localhost:8080/getWatchlist`, {
         method: 'GET',
@@ -28,8 +29,12 @@ import './Watchlist_Page.css';
         <Blue_Header activeLinkText={"watchlist"} />
         <div className='watchlist'>
         <h1 className='watchlistText'>My Watchlist</h1>
-        {watchlist.length === 0 ? <div className='watchlistnone'>Currently you don't have any stock in your watchlist.</div> : null}
-        {watchlist.length !== 0 && watchlist.map(item => (
+        {watchlist === undefined ? <div className="progressIndicator2">
+          <center>
+            <CircularProgress size={55} />
+          </center></div> : null}
+        { watchlist && watchlist.length === 0 ? <div className='watchlistnone'>Currently you don't have any stock in your watchlist.</div> : null}
+        {watchlist && watchlist.length !== 0 && watchlist.map(item => (
           <Watchlist_Card key={item} ticker={item} />
         ))}
         </div>

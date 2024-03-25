@@ -47,13 +47,31 @@ const handleDelete = () => {
         updateSearchResults(null);
         navigate(`/search/${ticker}`);
     }
+    if(quote === undefined){
+        return null;
+    }
+    if(quote.quote === undefined){
+        return null;
+    }
+    if(quote.quote.c === undefined){
+        return null;
+    }
+    if(quote.quote.d === undefined){
+        return null;
+    }
+    if(quote.quote.dp === undefined){
+        return null;
+    }
+    if(ticker === undefined){
+        return null;
+    }
     return (
-        <div className='watchlist_card2' >
+        <div className='watchlist_card2' onClick={handleNavigate}>
         <div className='watchlist_card'>
-            <BsX className='clear-watchlist' onClick={handleDelete}></BsX>
+            <BsX className='clear-watchlist' onClick={(e) => { e.stopPropagation(); handleDelete(); }}></BsX>
             <div className='watchlist_card' onClick={handleNavigate}>
             <h2>{ticker}</h2>
-           <h5>{quote && quote.quote && quote.profile.name}</h5>
+           <h5 className='h5'>{quote && quote.quote && quote.profile.name}</h5>
            </div>
         </div>
         <div className='pricesinWatchlist' onClick={handleNavigate}>

@@ -112,3 +112,9 @@ margin-left: 22px;
     margin-left: 30px;
     }
 }
+
+.progressIndicator{
+    display: flex;
+    justify-content: center;
+    margin-top: 80px;
+}

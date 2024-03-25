@@ -16,12 +16,15 @@ function AggregateCharts  ()  {
 //     return [timeString, item.c];
 // });
 // const latestChartData = formattedChartData.slice(-6);
+// if (chartData1 === undefined) {
+//   return null; // or any other handling for when chartData1 is undefined
+// }
 var hourlyChart = [];
 for(var i = 0 ; i < chartData1.length; i++){
   let tempTime = new Date(chartData1[i].t);
   let correct_time = tempTime.getTime();
-  // let timeString = tempTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-  hourlyChart.push([correct_time, chartData1[i].c]);
+  let timeString = tempTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  hourlyChart.push([timeString, chartData1[i].c]);
 }
 const options = {
   title:{

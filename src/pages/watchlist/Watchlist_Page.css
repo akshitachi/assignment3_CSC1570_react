@@ -24,3 +24,8 @@
     align-items: center;
     border: 1px solid #F7D488;
 }
+.progressIndicator2{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}

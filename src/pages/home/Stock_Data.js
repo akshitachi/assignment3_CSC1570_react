@@ -12,7 +12,6 @@ import { faStar as faStarSolid } from '@fortawesome/free-solid-svg-icons';
 import { faX } from '@fortawesome/free-solid-svg-icons';
 import { CircularProgress } from '@mui/material';
 import Modal from 'react-bootstrap/Modal';
-import { get, set } from "mongoose";
 
 function Stock_Data({}) {
   const { ticker } = useParams();
@@ -30,7 +29,7 @@ function Stock_Data({}) {
   const [isPortfolio2, setisPortfolio2] = useState(false);
 
         useEffect(() => {
-          if (searchResults == null || searchResults.profile.ticker == null) {
+          if ((searchResults == null || searchResults.profile.ticker == null) && ticker !== undefined) {
             fetch(`http://localhost:8080/search/${ticker}`, {
               method: 'GET',
               headers: {
@@ -113,8 +112,18 @@ function Stock_Data({}) {
       console.error(error);
     });
 }, [ticker]);
-  if (ticker === undefined || searchResults === null || searchResults.ticker === null){
+
+  if (ticker === undefined ){
     return null; 
+  }
+  if (searchResults == null || searchResults.profile.ticker == null) {
+    return (
+      <div className="progressIndicator">
+        <center>
+          <CircularProgress size={55} />
+        </center>
+      </div>
+    );
   }
    const profile = searchResults.profile;
    const getMoney = () => {
@@ -327,7 +336,6 @@ function Stock_Data({}) {
 
   return (
     <>
-      {searchResults ? (
         <div className="stock-column">
           {showMessage && (
             <div
@@ -475,9 +483,6 @@ function Stock_Data({}) {
           <MarketStatus />
           <MaterialTab />
         </div>
-      ) : (
-        <CircularProgress />
-      )}
     </>
   );
 }

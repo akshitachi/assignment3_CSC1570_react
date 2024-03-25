@@ -8,9 +8,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faX } from '@fortawesome/free-solid-svg-icons';
 
 function Portolio_Page ()  {
-  const [money, setMoney] = useState(0);
-  const [loading, setLoading] = useState(true);
-  const [portfolio, setPortfolio] = useState([]);
+  const [money, setMoney] = useState(undefined);
+  const [portfolio, setPortfolio] = useState(undefined);
   const [showMessage, setShowMessage] = useState(false);
   const [isPortfolio, setisPortfolio] = useState(true);
   const [dataFromChild, setDataFromChild] = useState(null);
@@ -25,12 +24,10 @@ function Portolio_Page ()  {
       .then(response => response.json())
       .then(data => {
         setMoney(data);
-        setLoading(false);
         console.log(data);
       })
       .catch(error => {
         console.error(error);
-        setLoading(false);
       })
       .catch(error => {
         console.error(error);
@@ -72,9 +69,6 @@ function Portolio_Page ()  {
   return (
     <div>
           <Blue_Header activeLinkText={"portfolio"}/>
-          {loading ? (
-       <center> <CircularProgress /> </center>
-      ) : (
           <div className='portfolio'>
             {showMessage && (
             <div
@@ -95,14 +89,16 @@ function Portolio_Page ()  {
             </div>
           )}
             <h1 className='portfolioText'>My Portfolio</h1>
-            <h3 className='portfolioText'>Money in Wallet: ${parseFloat(money).toFixed(2)}</h3>
-            {portfolio.length === 0 ? <div className='portfolionone'>Currently you don't have any stock.</div> : null}
-        {portfolio.length !== 0 && portfolio.map(item => (
+            {portfolio === undefined ? <div className="progressIndicator2">
+              <center>
+                <CircularProgress size={55} />
+              </center></div> : null}
+           {money !== undefined ? <h3 className='portfolioText'>Money in Wallet: ${parseFloat(money).toFixed(2)}</h3>: null}
+            {portfolio && portfolio.length === 0 ? <div className='portfolionone'>Currently you don't have any stock.</div> : null}
+        {portfolio && portfolio.length !== 0 && portfolio.map(item => (
           <Portfolio_Card quantity={item.quantity} name={item.name} avgCost={item.avgCost} ticker={item.ticker} totalCost={item.totalCost} sendDataToParent={receiveDataFromChild}/>
         ))}
           </div>
-      )
-    }
           <Footer/>
     </div>
   );
