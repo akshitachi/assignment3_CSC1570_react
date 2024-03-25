@@ -12,6 +12,7 @@ import { faStar as faStarSolid } from '@fortawesome/free-solid-svg-icons';
 import { faX } from '@fortawesome/free-solid-svg-icons';
 import { CircularProgress } from '@mui/material';
 import Modal from 'react-bootstrap/Modal';
+import { get, set } from "mongoose";
 
 function Stock_Data({}) {
   const { ticker } = useParams();
@@ -20,9 +21,13 @@ function Stock_Data({}) {
   const [showMessage, setShowMessage] = useState(false);
   const [showMessagePortfolio, setShowMessagePortfolio] = useState(false);
   const [show, setShow] = useState(false);
+  const [show2, setShow2] = useState(false);
   const [money, setMoney] = useState(0);
   const [quantity, setQuantity] = useState(0);
+  const [quantity2, setQuantity2] = useState(0);
   const [isPortfolio, setisPortfolio] = useState(false);
+  const [portfolio, setPortfolio] = useState([]);
+  const [isPortfolio2, setisPortfolio2] = useState(false);
 
         useEffect(() => {
           if (searchResults == null || searchResults.profile.ticker == null) {
@@ -93,10 +98,41 @@ function Stock_Data({}) {
         console.error(error);
       })
   }, []);
+  useEffect(() => {fetch(`http://localhost:8080/getPortfolioItem/${ticker}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then(response => response.json())
+    .then(data => {
+      setPortfolio(data);
+     console.log("portfolio:",data);
+    })
+    .catch(error => {
+      console.error(error);
+    });
+}, [ticker]);
   if (ticker === undefined || searchResults === null || searchResults.ticker === null){
     return null; 
   }
    const profile = searchResults.profile;
+   const getMoney = () => {
+    fetch(`http://localhost:8080/getMoney`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(response => response.json())
+      .then(data => {
+        setMoney(data);
+        console.log(data);
+      })
+      .catch(error => {
+        console.error(error);
+      })
+    };
  
    const handleFavoriteClick = () => {
     if (!isFavorite) {
@@ -150,9 +186,17 @@ function Stock_Data({}) {
     setQuantity(0);
     setShow(false);
   }
+  const handleClose2 = () => {
+    setQuantity2(0);
+    setShow2(false);
+  }
    const handleShow = () => {
+    getMoney();
     setShow(true);
-    
+  }
+  const handleShow2 = () => {
+    getMoney();
+    setShow2(true);
   }
 
   const handleBuyClick = () => {
@@ -236,6 +280,49 @@ function Stock_Data({}) {
       handleClose();
       setShowMessagePortfolio(true);
       setisPortfolio(true);
+      setisPortfolio2(true);
+  };
+  const handleSellClick = () => {
+    fetch(`http://localhost:8080/sellPortfolio/${ticker}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ quantity: quantity2, price: searchResults.quote.c}),
+    })
+      .then(response => {
+        if (response.ok) {
+          console.log('Portfolio sold successfully.');
+        } else {
+          console.error('Error selling portfolio.');
+        }
+      })
+      .catch(error => {
+        console.error(error);
+      });
+      console.log(money);
+      fetch(`http://localhost:8080/updateMoney/${money + (parseFloat(quantity2) * searchResults.quote.c)}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+        .then(response => {
+          if (response.ok) {
+            console.log('Money updated successfully.');
+          } else {
+            console.error('Error updating money.');
+          }
+        })
+        .catch(error => {
+          console.error(error);
+        });
+        handleClose2();
+        setShowMessagePortfolio(true);
+        if(portfolio && portfolio.quantity === parseFloat(quantity2)){
+          setisPortfolio(false);
+        }
+        setisPortfolio2(false);
   };
 
   return (
@@ -263,11 +350,11 @@ function Stock_Data({}) {
           {showMessagePortfolio && (
             <div
               className={`messageFavorite ${
-                isPortfolio ? "added" : "removed"
+                isPortfolio2 ? "added" : "removed"
               }`}
             >
               <span style={{ marginRight: 480, marginLeft: 450 }}>
-                {isPortfolio
+                {isPortfolio2
                   ? `${profile.ticker} bought successfully.`
                   : `${profile.ticker} sold successfully.`}
               </span>
@@ -305,7 +392,7 @@ function Stock_Data({}) {
                   Buy
                 </button>
                 {isPortfolio && (
-                  <button className="sell_button" onClick={handleShow}>
+                  <button className="sell_button" onClick={handleShow2}>
                     Sell
                   </button>
                 )}
@@ -340,6 +427,42 @@ function Stock_Data({}) {
                       </div> 
                       <button className="buy_button2" onClick={handleBuyClick} disabled={ (money < parseFloat(quantity) * searchResults.quote.c || quantity===0 || isNaN(quantity))} style={{ backgroundColor: (money < parseFloat(quantity) * searchResults.quote.c || quantity===0 ||isNaN(quantity)) ? "#85B99E" : "" }}>
                         Buy
+                      </button>
+                    </div>
+                  </Modal.Footer>
+                </Modal>
+
+                <Modal show={show2} onHide={handleClose2} animation={false}>
+                  <Modal.Header closeButton>
+                    <Modal.Title>
+                      {ticker}
+                    </Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>
+                    <div>Current Price: {searchResults && searchResults.quote && searchResults.quote.c}</div>
+                    <div>Money in Wallet: ${money.toFixed(2)}</div>
+                    <div>
+                      Quantity:
+                      <input
+                        type="number"
+                        value={parseFloat(quantity2)}
+                        onChange={(e) => setQuantity2(parseFloat(e.target.value))}
+                        style={{ width: "380px",marginLeft:7 }}
+                        min={0}
+                        max={9999}
+                      />
+                      {searchResults && searchResults.quote && portfolio && portfolio.quantity < parseFloat(quantity2) && (
+                        <div style={{ color: "red", marginBottom:22,marginTop:7}}>You cannot sell the stocks you don't have!</div>
+                      )}
+                    </div>
+                  </Modal.Body>
+                  <Modal.Footer>
+                    <div className="buy_column">
+                      <div>
+                        Total: {searchResults && searchResults.quote && quantity2 ? (parseFloat(quantity2) * searchResults.quote.c).toFixed(2) : 0}
+                      </div> 
+                      <button className="buy_button2" onClick={handleSellClick} disabled={searchResults && searchResults.quote && portfolio &&  (portfolio.quantity < parseFloat(quantity2) || quantity2===0 || isNaN(quantity2))} style={{ backgroundColor: searchResults && portfolio && searchResults.quote &&  (portfolio.quantity < parseFloat(quantity2) || quantity2===0 ||isNaN(quantity2)) ? "#85B99E" : "" }}>
+                        Sell
                       </button>
                     </div>
                   </Modal.Footer>
