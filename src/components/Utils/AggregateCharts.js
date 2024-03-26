@@ -1,4 +1,4 @@
-import {React} from 'react'
+import {React, useEffect, useState} from 'react'
 import { useSearchResult } from '../State/SearchResultContext';
 import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official';
@@ -6,19 +6,26 @@ import './AggregateCharts.css';
 
 function AggregateCharts  ()  {
     const { searchResults } = useSearchResult();
-    const chartData1 = searchResults.chartData.results;
-//     const chartDataTobeFitted = chartData1.map(item => [item.t, item.c]);
-//     console.log(chartDataTobeFitted);
-
-// const formattedChartData = chartData1.map(item => {
-//     const date = new Date(item.t);
-//     const timeString = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-//     return [timeString, item.c];
-// });
-// const latestChartData = formattedChartData.slice(-6);
-// if (chartData1 === undefined) {
-//   return null; // or any other handling for when chartData1 is undefined
-// }
+    const [ chartData,updateChartData ] = useState([]);
+useEffect(() => {
+  fetch(`http://localhost:8080/getchart/${searchResults.profile.ticker}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then(response => response.json())
+    .then(data => {
+      updateChartData(data);
+    })
+    .catch(error => {
+      console.error(error);
+    });
+}, [searchResults.profile.ticker]);
+const chartData1 = chartData.results;
+if(chartData1===undefined){
+  return null;
+}
 var hourlyChart = [];
 for(var i = 0 ; i < chartData1.length; i++){
   let tempTime = new Date(chartData1[i].t);

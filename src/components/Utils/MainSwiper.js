@@ -12,7 +12,6 @@ import Insight from '../StockData/MaterialTab/Tabs/Insight';
 
 export default function LabTabs() {
   const [value, setValue] = React.useState('1');
-
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };

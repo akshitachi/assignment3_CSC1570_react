@@ -12,7 +12,6 @@ import { faStar as faStarSolid } from '@fortawesome/free-solid-svg-icons';
 import { faX } from '@fortawesome/free-solid-svg-icons';
 import { CircularProgress } from '@mui/material';
 import Modal from 'react-bootstrap/Modal';
-import { useMarketResults } from "../../components/State/MarketStatusContext";
 
 function Stock_Data({}) {
   const { ticker } = useParams();
@@ -28,7 +27,6 @@ function Stock_Data({}) {
   const [isPortfolio, setisPortfolio] = useState(false);
   const [portfolio, setPortfolio] = useState([]);
   const [isPortfolio2, setisPortfolio2] = useState(false);
-  const {marketResult, setMarketResult} = useMarketResults();
   useEffect(() => {
     // console.log(marketResult);
     const fetchData = async () => {
@@ -82,9 +80,9 @@ function Stock_Data({}) {
         setisPortfolio(data);
       });
 
-    // const interval = setInterval(fetchData, 5000); // Fetch data every 15 seconds
+    const interval = setInterval(fetchData, 15000); // Fetch data every 15 seconds
 
-    // return () => clearInterval(interval); // Cleanup interval on unmount
+    return () => clearInterval(interval); // Cleanup interval on unmount
   }, [ticker]);
   useEffect(() => {
     if (showMessage) {
@@ -415,11 +413,11 @@ function Stock_Data({}) {
               <h1 className="companyName">{searchResults.profile.name}</h1>
               <p className="exchange">{searchResults.profile.exchange}</p>
               <div className="row2">
-                <button className="buy_button" onClick={handleShow}> 
+                <button className="buy_button" onClick={handleShow} disabled={!searchResults.marketStatus}> 
                   Buy
                 </button>
                 {isPortfolio && (
-                  <button className="sell_button" onClick={handleShow2}>
+                  <button className="sell_button" onClick={handleShow2} disabled={!searchResults.marketStatus}>
                     Sell
                   </button>
                 )}

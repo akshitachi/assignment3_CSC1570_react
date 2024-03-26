@@ -11,7 +11,6 @@ import { MarketResultProvider } from "./components/State/MarketStatusContext";
 function App() {
 
   return (
-    // <TickerResultProvider>
     <MarketResultProvider>
     <SearchResultProvider>
     <div>
@@ -25,7 +24,6 @@ function App() {
     </div>
     </SearchResultProvider>
     </MarketResultProvider>
-    //</TickerResultProvider>
   );
 }
 

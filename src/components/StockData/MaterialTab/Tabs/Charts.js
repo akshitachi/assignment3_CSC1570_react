@@ -8,7 +8,8 @@ import VBP from 'highcharts/indicators/volume-by-price';
 import HCMA from 'highcharts/highcharts-more';
 import HSIndicators from "highcharts/indicators/indicators";
 import '../Tabs/Charts.css';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import Chart1 from '../../../Utils/Chart1';
 HCMA(Highcharts); 
 
 HSIndicators(Highcharts);
@@ -18,11 +19,33 @@ VBP(Highcharts);
 IndicatorsCore(Highcharts);
 function Charts  () {
     const { searchResults } = useSearchResult();
-    const ohlcData = searchResults.ohlc.results;
+    const [ohlcData1, setOhlcData] = useState([]); 
+    useEffect(() => {
+        fetch(`http://localhost:8080/getohlc/${searchResults.profile.ticker}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then(response => response.json())
+            .then(data => {
+                setOhlcData(data);
+            }
+            )
+            .catch(error => {
+                console.error(error);
+            }   
+        );
+    }, [searchResults.profile.ticker]);
     
+    const ohlcData =ohlcData1 && ohlcData1.results;
+    if(ohlcData === undefined){
+        return null;
+     }
+    // console.log(ohlcData);
     var ohlc = [];
     var volume = [];
-    const dataLength = searchResults.ohlc.count;
+    const dataLength = ohlcData1.count;
     const  groupingUnits = [[
         'week',                         // unit name
         [1]                             // allowed multiples
@@ -133,14 +156,10 @@ function Charts  () {
             color: '#C1907A'
         }]
     };
-    useEffect(() => {
-        Highcharts.stockChart('container5', options);
-    }, []);
-    return (
-        <div className='chartOhlc'>
-    <div id="container5"></div>
-    </div>
 
+
+    return (
+        <Chart1 options={options}/>
     );
 }
 

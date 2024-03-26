@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './Portfolio_Card.css';
 import Modal from 'react-bootstrap/Modal';
+import { useSearchResult } from '../../components/State/SearchResultContext';
 
 const Portfolio_Card = ({quantity,avgCost,name,ticker,totalCost,sendDataToParent}) => {
     const [quote, setQuote] = useState({});
@@ -8,6 +9,7 @@ const Portfolio_Card = ({quantity,avgCost,name,ticker,totalCost,sendDataToParent
     const [show2, setShow2] = useState(false);
     const [money, setMoney] = useState(0);
     const [quantity2, setQuantity2] = useState(0);
+    const {searchResults} = useSearchResult();
     useEffect(() => {
         fetch(`http://localhost:8080/quote/${ticker}`, {
             method: 'GET',
@@ -171,7 +173,7 @@ return (
                     </div>
                 </div>
                 <div className={`labels ${quote && quote.quote && (quote.quote.c.toFixed(2) > avgCost.toFixed(2)) ? 'green' : quote && quote.quote && (quote.quote.c.toFixed(2) < avgCost.toFixed(2)) ? 'red' : '' }`}>
-                    {quote && quote.quote && quote.quote.c}
+                    {quote && quote.quote && quote.quote.c.toFixed(2)}
                 </div>
                 <div className={`labels ${quote && quote.quote && (quote.quote.c.toFixed(2) > avgCost.toFixed(2)) ? 'green' : quote && quote.quote && (quote.quote.c.toFixed(2) < avgCost.toFixed(2)) ? 'red' : '' }`}>
                     {quote && quote.quote && (quote.quote.c * quantity).toFixed(2)}
@@ -179,10 +181,10 @@ return (
             </div>
         </div>
         <div className='rowportfolio6'>
-        <button className="buy_button3" onClick={handleShow}>
+        <button className="buy_button3" onClick={handleShow} disabled={searchResults && !searchResults.marketStatus}>
                   Buy
                 </button>
-                  <button className="sell_button2" onClick={handleShow2}>
+                  <button className="sell_button2" onClick={handleShow2} disabled={searchResults && !searchResults.marketStatus}>
                     Sell
                   </button>
                   <Modal show={show} onHide={handleClose} animation={false}>
