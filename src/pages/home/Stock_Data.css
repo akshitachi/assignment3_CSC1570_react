@@ -34,7 +34,7 @@
     margin-left: 20px;
 }
 .buy_button{
-    margin-left: 10px;
+    margin-left: 20px;
 }
 
 .sell_button{
@@ -52,6 +52,39 @@
     margin-right: 200px;
     margin-bottom: 20px;
     border-radius: 5px;
+}
+
+.messageFavoritebig{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    width:365px;
+    height: 60px;
+    background-color: #DBEAE2;
+    margin-left: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.messageFavorite{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    width: 1200px;
+    height: 60px;
+    background-color: #DBEAE2;
+    margin-left: 200px;
+    margin-right: 200px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+.messageFavoritebig.added{
+    background-color: #DBEAE2;
+    color: #449062;
+}
+.messageFavoritebig.removed{
+    background-color: #F4D2D2;
+    color: #D8000C;
 }
 .messageFavorite.added{
     background-color: #DBEAE2;

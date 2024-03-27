@@ -81,9 +81,9 @@ function Stock_Data({}) {
         setisPortfolio(data);
       });
 
-    const interval = setInterval(fetchData, 15000); // Fetch data every 15 seconds
+    const interval = setInterval(fetchData, 15000);
 
-    return () => clearInterval(interval); // Cleanup interval on unmount
+    return () => clearInterval(interval); 
   }, [ticker]);
   useEffect(() => {
     if (showMessage) {
@@ -357,11 +357,11 @@ function Stock_Data({}) {
         <div className="stock-column">
           {showMessage && (
             <div
-              className={`messageFavorite ${
+              className={`messageFavorite${window.innerWidth > 844 ? '' : 'big'} ${
                 isFavorite ? "added" : "removed"
-              }`}
+              } `}
             >
-              <span style={{ marginRight: 480, marginLeft: 450 }}>
+              <span style={window.innerWidth>844?{  marginRight: 480, marginLeft: 450 }:{width:330, textAlign:'center'}}>
                 {isFavorite
                   ? `${profile.ticker} added to Watchlist.`
                   : `${profile.ticker} removed from Watchlist.`}
@@ -375,11 +375,11 @@ function Stock_Data({}) {
           )}
           {showMessagePortfolio && (
             <div
-              className={`messageFavorite ${
+              className={`messageFavorite${window.innerWidth > 844 ? '' : 'big'} ${
                 isPortfolio2 ? "added" : "removed"
-              }`}
+              } `}
             >
-              <span style={{ marginRight: 480, marginLeft: 450 }}>
+              <span style={window.innerWidth>844?{  marginRight: 480, marginLeft: 450 }:{width:330, textAlign:'center'}}>
                 {isPortfolio2
                   ? `${profile.ticker} bought successfully.`
                   : `${profile.ticker} sold successfully.`}

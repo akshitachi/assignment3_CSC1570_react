@@ -18,12 +18,12 @@ const NewsCard = ({ item }) => {
 
 return (
     <>
-        <div className="newsTab1" onClick={handleShow} style={{ cursor: 'pointer' }}>
-            <div className="imageNews">
-                <img src={item.image} className="imageActual" alt="News" />
+        <div className={`newsTab1${window.innerWidth > 844 ? '' : 'big'}`} onClick={handleShow} style={{ cursor: 'pointer' }}>
+            <div className={`imageNews${window.innerWidth > 844 ? '' : 'big'}`}>
+                <img src={item.image} className={`imageActual${window.innerWidth > 844 ? '' : 'big'}`} alt="News" />
             </div>
-            <div className="newsSource">
-                <div className="newsHeadline">{item.headline}</div>
+            <div className={`newsSource${window.innerWidth > 844 ? '' : 'big'}`}>
+                <div className={`newsHeadline${window.innerWidth > 844 ? '' : 'big'}`}>{item.headline}</div>
             </div>
         </div>
         <Modal show={show} onHide={handleClose} animation={false}>
