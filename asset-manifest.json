@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/assignment3_CSC1570_react.github.io/static/css/main.96f0df36.css",
-    "main.js": "/assignment3_CSC1570_react.github.io/static/js/main.68b1145c.js",
-    "static/js/453.1548e02c.chunk.js": "/assignment3_CSC1570_react.github.io/static/js/453.1548e02c.chunk.js",
-    "index.html": "/assignment3_CSC1570_react.github.io/index.html",
-    "main.96f0df36.css.map": "/assignment3_CSC1570_react.github.io/static/css/main.96f0df36.css.map",
-    "main.68b1145c.js.map": "/assignment3_CSC1570_react.github.io/static/js/main.68b1145c.js.map",
-    "453.1548e02c.chunk.js.map": "/assignment3_CSC1570_react.github.io/static/js/453.1548e02c.chunk.js.map"
+    "main.css": "/assignment3_CSC1570_react/static/css/main.96f0df36.css",
+    "main.js": "/assignment3_CSC1570_react/static/js/main.3cbdc8bc.js",
+    "static/js/453.1548e02c.chunk.js": "/assignment3_CSC1570_react/static/js/453.1548e02c.chunk.js",
+    "index.html": "/assignment3_CSC1570_react/index.html",
+    "main.96f0df36.css.map": "/assignment3_CSC1570_react/static/css/main.96f0df36.css.map",
+    "main.3cbdc8bc.js.map": "/assignment3_CSC1570_react/static/js/main.3cbdc8bc.js.map",
+    "453.1548e02c.chunk.js.map": "/assignment3_CSC1570_react/static/js/453.1548e02c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.96f0df36.css",
-    "static/js/main.68b1145c.js"
+    "static/js/main.3cbdc8bc.js"
   ]
 }
