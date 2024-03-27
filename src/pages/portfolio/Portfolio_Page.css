@@ -1,18 +1,59 @@
 .portfolio{
     display: flex;
     flex-direction: column;
+    justify-content: center;
     margin-left: 250px;
     margin-top: 50px;
     margin-right: 350px;
+    margin-bottom: 60px;
 }
 
+.portfoliobig{
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    margin-top: 50px;
+    margin-right: 10px;
+    margin-bottom: 60px;
+}
+.messageFavorite2big{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    width: 365px;
+    height: 60px;
+    background-color: #DBEAE2;
+    margin-left: 8px;
+    margin-right: 8px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.messageFavorite2big.added{
+    background-color: #DBEAE2;
+    color: #449062;
+}
+.messageFavorite2big.removed{
+    background-color: #F4D2D2;
+    color: #D8000C;
+}
+.messageFavorite2.added{
+    background-color: #DBEAE2;
+    color: #449062;
+}
+.messageFavorite2.removed{
+    background-color: #F4D2D2;
+    color: #D8000C;
+}
 .rowportfolio{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin-bottom: 20px;
 }
-
+.portfolioTextbig{
+    margin-left: 20px;
+}
 .portfolionone{
     background-color: #FCF1CD;
     height: 50px;

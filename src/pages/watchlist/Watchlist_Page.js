@@ -27,13 +27,13 @@ import { CircularProgress } from '@mui/material';
     return (
       <div >
         <Blue_Header activeLinkText={"watchlist"} />
-        <div className='watchlist'>
-        <h1 className='watchlistText'>My Watchlist</h1>
+        <div className={`watchlist${window.innerWidth > 844 ? '' : 'big'}`}>
+        <h1 className="watchlistText">My Watchlist</h1>
         {watchlist === undefined ? <div className="progressIndicator2">
           <center>
             <CircularProgress size={55} />
           </center></div> : null}
-        { watchlist && watchlist.length === 0 ? <div className='watchlistnone'>Currently you don't have any stock in your watchlist.</div> : null}
+        { watchlist && watchlist.length === 0 ? <div className={`watchlistnone${window.innerWidth > 844 ? '' : 'big'}`}>Currently you don't have any stock in your watchlist.</div> : null}
         {watchlist && watchlist.length !== 0 && watchlist.map(item => (
           <Watchlist_Card key={item} ticker={item} />
         ))}

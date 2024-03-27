@@ -69,14 +69,14 @@ function Portolio_Page ()  {
   return (
     <div>
           <Blue_Header activeLinkText={"portfolio"}/>
-          <div className='portfolio'>
+          <div className={`portfolio${window.innerWidth > 844 ? '' : 'big'}`}>
             {showMessage && (
             <div
-              className={`messageFavorite2 ${
+              className={`messageFavorite2${window.innerWidth > 844 ? '' : 'big'} ${
                 isPortfolio ? "added" : "removed"
-              }`}
+              } `}
             >
-              <span style={{ marginRight: 480, marginLeft: 450 }}>
+              <span style={window.innerWidth>844?{ marginRight: 480, marginLeft: 450 }:{width:330, textAlign:'center'}}>
                 {isPortfolio
                   ? `${dataFromChild} bought successfully.`
                   : `${dataFromChild} sold successfully.`}
@@ -88,18 +88,18 @@ function Portolio_Page ()  {
               />
             </div>
           )}
-            <h1 className='portfolioText'>My Portfolio</h1>
+            <h1 className={`portfolioText${window.innerWidth > 844 ? '' : 'big'}`}>My Portfolio</h1>
             {portfolio === undefined ? <div className="progressIndicator2">
               <center>
                 <CircularProgress size={55} />
               </center></div> : null}
-           {money !== undefined ? <h3 className='portfolioText'>Money in Wallet: ${parseFloat(money).toFixed(2)}</h3>: null}
+           {money !== undefined ? <h3 className={`portfolioText${window.innerWidth > 844 ? '' : 'big'}`}>Money in Wallet: ${parseFloat(money).toFixed(2)}</h3>: null}
             {portfolio && portfolio.length === 0 ? <div className='portfolionone'>Currently you don't have any stock.</div> : null}
         {portfolio && portfolio.length !== 0 && portfolio.map(item => (
           <Portfolio_Card quantity={item.quantity} name={item.name} avgCost={item.avgCost} ticker={item.ticker} totalCost={item.totalCost} sendDataToParent={receiveDataFromChild}/>
         ))}
-          </div>
-          <Footer/>
+        </div>
+          <Footer/> 
     </div>
   );
 }

@@ -13,7 +13,14 @@
     margin-bottom: 20px;
 }
 .watchlistText{
-    margin-bottom: 30px;
+    margin-bottom: 40px;
+}
+
+.watchlistbig{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    margin-top: 40px;
 }
 .watchlistnone{
     background-color: #FCF1CD;
@@ -24,6 +31,17 @@
     align-items: center;
     border: 1px solid #F7D488;
 }
+
+.watchlistnonebig{
+    background-color: #FCF1CD;
+    height: 50px;
+    border-radius: 8px;
+    display: flex;
+    text-align: center;
+    width: 95%;
+    border: 1px solid #F7D488;
+}
+
 .progressIndicator2{
     display: flex;
     justify-content: center;

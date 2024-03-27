@@ -67,14 +67,14 @@ const handleDelete = () => {
     }
     return (
         <div className='watchlist_card2' onClick={handleNavigate}>
-        <div className='watchlist_card'>
+        <div className={`watchlist_card${window.innerWidth > 844 ? '' : 'big'}`}>
             <BsX className='clear-watchlist' onClick={(e) => { e.stopPropagation(); handleDelete(); }}></BsX>
             <div className='watchlist_card' onClick={handleNavigate}>
             <h2>{ticker}</h2>
-           <h5 className='h5'>{quote && quote.quote && quote.profile.name}</h5>
+           <h5 className={`h5${window.innerWidth > 844 ? '' : 'big'}`}>{quote && quote.quote && quote.profile.name}</h5>
            </div>
         </div>
-        <div className='pricesinWatchlist' onClick={handleNavigate}>
+        <div className={`pricesinWatchlist${window.innerWidth > 844 ? '' : 'big'}`} onClick={handleNavigate}>
             <h2 style={{ color: quote && quote.quote && quote.quote.d > 0 ? 'green' : quote && quote.quote && quote.quote.d < 0 ? 'red' : 'black' }}>
             {quote && quote.quote && quote.quote.c}
             </h2>

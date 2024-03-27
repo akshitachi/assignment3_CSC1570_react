@@ -1,8 +1,11 @@
 .watchlist_card{
     width: 200px;
 }
+.watchlist_cardbig{
+    width: 160px;
+}
 .watchlist_card2{
-    width: 100%;
+    width: 95%;
     height: 120px;
     border: 1px solid black;
     border-radius: 5px;
@@ -12,9 +15,16 @@
    display: flex;
    flex-direction: row; 
 }
+.h5big{
+    width: 160px
+}
 .pricesinWatchlist{
     margin-top: 25px;
     margin-left: 350px;
+}
+.pricesinWatchlistbig{
+    margin-top: 25px;
+    margin-left: 0px;
 }
 .watchlistD{
     margin-right: 8px;

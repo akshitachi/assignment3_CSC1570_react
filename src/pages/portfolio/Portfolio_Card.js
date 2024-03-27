@@ -149,6 +149,7 @@ return (
             <h2 className='portfolioTicker'>{ticker}</h2>
             <div className='portfolioName'>{name}</div>
         </div>
+        {window.innerWidth > 844 &&(
         <div className='rowportfolio3'>
             <div>
                 <div className='labels'>Quantity: </div>
@@ -180,6 +181,36 @@ return (
                 </div>
             </div>
         </div>
+        )}
+        {window.innerWidth <= 844 &&(
+        <div className='rowportfolio8'>
+            <div>
+                <div className='labels2'>Quantity: </div>
+                <div className='labels2'>Avg. Cost / Share: </div>
+                <div className='labels2'>Total Cost: </div>
+                <div className='labels2'>Change: </div>
+                <div className='labels2'>Current Price: </div>
+                <div className='labels2'>Market Value:</div>
+            </div>
+            <div className='column4'>
+                <div className='labels2'>{quantity.toFixed(2)}</div>
+                <div className='labels2'>{avgCost.toFixed(2)}</div>
+                <div className='labels2'>{totalCost.toFixed(2)}</div>
+                <div className={`labels2 ${quote && quote.quote && (quote.quote.c.toFixed(2) > avgCost.toFixed(2)) ? 'green' : quote && quote.quote && (quote.quote.c.toFixed(2) < avgCost.toFixed(2)) ? 'red' : '' }`}>
+                <div className='rowportolio5'>
+            <div>{quote && quote.quote && quote.quote.c.toFixed(2) > avgCost.toFixed(2) ? '▲' : quote && quote.quote && quote.quote.c.toFixed(2) < avgCost.toFixed(2)? '▼':''}</div>
+                    {quote && quote.quote && (quote.quote.c - avgCost).toFixed(2)}
+                    </div>
+                </div>
+                <div className={`labels2 ${quote && quote.quote && (quote.quote.c.toFixed(2) > avgCost.toFixed(2)) ? 'green' : quote && quote.quote && (quote.quote.c.toFixed(2) < avgCost.toFixed(2)) ? 'red' : '' }`}>
+                    {quote && quote.quote && quote.quote.c.toFixed(2)}
+                </div>
+                <div className={`labels2 ${quote && quote.quote && (quote.quote.c.toFixed(2) > avgCost.toFixed(2)) ? 'green' : quote && quote.quote && (quote.quote.c.toFixed(2) < avgCost.toFixed(2)) ? 'red' : '' }`}>
+                    {quote && quote.quote && (quote.quote.c * quantity).toFixed(2)}
+                </div>
+            </div>
+        </div>
+        )}
         <div className='rowportfolio6'>
         <button className="buy_button3" onClick={handleShow} disabled={searchResults && !searchResults.marketStatus}>
                   Buy
@@ -259,7 +290,7 @@ return (
                   </Modal.Footer>
                 </Modal>
         </div>
-    </div>
+     </div>
 )
 }
 
