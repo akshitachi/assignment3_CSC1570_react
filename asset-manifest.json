@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/assignment3_CSC1570_react/static/css/main.96f0df36.css",
-    "main.js": "/assignment3_CSC1570_react/static/js/main.3cbdc8bc.js",
-    "static/js/453.1548e02c.chunk.js": "/assignment3_CSC1570_react/static/js/453.1548e02c.chunk.js",
-    "index.html": "/assignment3_CSC1570_react/index.html",
-    "main.96f0df36.css.map": "/assignment3_CSC1570_react/static/css/main.96f0df36.css.map",
-    "main.3cbdc8bc.js.map": "/assignment3_CSC1570_react/static/js/main.3cbdc8bc.js.map",
-    "453.1548e02c.chunk.js.map": "/assignment3_CSC1570_react/static/js/453.1548e02c.chunk.js.map"
+    "main.css": "/akshil_assignment3/static/css/main.96f0df36.css",
+    "main.js": "/akshil_assignment3/static/js/main.d6fb961a.js",
+    "static/js/453.1548e02c.chunk.js": "/akshil_assignment3/static/js/453.1548e02c.chunk.js",
+    "index.html": "/akshil_assignment3/index.html",
+    "main.96f0df36.css.map": "/akshil_assignment3/static/css/main.96f0df36.css.map",
+    "main.d6fb961a.js.map": "/akshil_assignment3/static/js/main.d6fb961a.js.map",
+    "453.1548e02c.chunk.js.map": "/akshil_assignment3/static/js/453.1548e02c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.96f0df36.css",
-    "static/js/main.3cbdc8bc.js"
+    "static/js/main.d6fb961a.js"
   ]
 }
