@@ -15,7 +15,7 @@ function Portolio_Page ()  {
   const [dataFromChild, setDataFromChild] = useState(null);
   
   useEffect(() => {
-    fetch(`http://localhost:8080/getMoney`, {
+    fetch(`https://assignment3-nodejs-akshil-shah.wl.r.appspot.com/getMoney`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -35,7 +35,7 @@ function Portolio_Page ()  {
       }, [portfolio]);
       
   useEffect(() => {
-    fetch(`http://localhost:8080/getportfolio`, {
+    fetch(`https://assignment3-nodejs-akshil-shah.wl.r.appspot.com/getportfolio`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

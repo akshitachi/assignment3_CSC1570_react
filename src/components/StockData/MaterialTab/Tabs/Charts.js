@@ -21,7 +21,7 @@ function Charts  () {
     const { searchResults } = useSearchResult();
     const [ohlcData1, setOhlcData] = useState([]); 
     useEffect(() => {
-        fetch(`http://localhost:8080/getohlc/${searchResults.profile.ticker}`, {
+        fetch(`https://assignment3-nodejs-akshil-shah.wl.r.appspot.com/getohlc/${searchResults.profile.ticker}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

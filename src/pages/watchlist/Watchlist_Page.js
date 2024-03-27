@@ -9,7 +9,7 @@ import { CircularProgress } from '@mui/material';
   function Watchlist_Page() {
     const [watchlist, setWatchlist] = useState(undefined);
     useEffect(() => {
-      fetch(`http://localhost:8080/getWatchlist`, {
+      fetch(`https://assignment3-nodejs-akshil-shah.wl.r.appspot.com/getWatchlist`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',

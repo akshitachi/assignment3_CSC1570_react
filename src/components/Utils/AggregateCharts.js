@@ -8,7 +8,7 @@ function AggregateCharts  ()  {
     const { searchResults } = useSearchResult();
     const [ chartData,updateChartData ] = useState([]);
 useEffect(() => {
-  fetch(`http://localhost:8080/getchart/${searchResults.profile.ticker}`, {
+  fetch(`https://assignment3-nodejs-akshil-shah.wl.r.appspot.com/getchart/${searchResults.profile.ticker}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

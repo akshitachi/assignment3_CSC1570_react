@@ -11,7 +11,7 @@ const Portfolio_Card = ({quantity,avgCost,name,ticker,totalCost,sendDataToParent
     const [quantity2, setQuantity2] = useState(0);
     const {searchResults} = useSearchResult();
     useEffect(() => {
-        fetch(`http://localhost:8080/quote/${ticker}`, {
+        fetch(`https://assignment3-nodejs-akshil-shah.wl.r.appspot.com/quote/${ticker}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -27,7 +27,7 @@ const Portfolio_Card = ({quantity,avgCost,name,ticker,totalCost,sendDataToParent
         });
     }, [ticker]);
     useEffect(() => {
-        fetch(`http://localhost:8080/getMoney`, {
+        fetch(`https://assignment3-nodejs-akshil-shah.wl.r.appspot.com/getMoney`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -66,7 +66,7 @@ const Portfolio_Card = ({quantity,avgCost,name,ticker,totalCost,sendDataToParent
           name: name,
           avgCost: quote.quote.c,
         };
-            fetch(`http://localhost:8080/updatePortfolio/${ticker}`, {
+            fetch(`https://assignment3-nodejs-akshil-shah.wl.r.appspot.com/updatePortfolio/${ticker}`, {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
@@ -83,7 +83,7 @@ const Portfolio_Card = ({quantity,avgCost,name,ticker,totalCost,sendDataToParent
               .catch(error => {
                 console.error(error);
               });
-            fetch(`http://localhost:8080/updateMoney/${money - (parseFloat(quantity2) * quote.quote.c)}`, {
+            fetch(`https://assignment3-nodejs-akshil-shah.wl.r.appspot.com/updateMoney/${money - (parseFloat(quantity2) * quote.quote.c)}`, {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
@@ -105,7 +105,7 @@ const Portfolio_Card = ({quantity,avgCost,name,ticker,totalCost,sendDataToParent
           sendDataToParent(ticker,true);
       };
       const handleSellClick = () => {
-        fetch(`http://localhost:8080/sellPortfolio/${ticker}`, {
+        fetch(`https://assignment3-nodejs-akshil-shah.wl.r.appspot.com/sellPortfolio/${ticker}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -123,7 +123,7 @@ const Portfolio_Card = ({quantity,avgCost,name,ticker,totalCost,sendDataToParent
             console.error(error);
           });
           console.log(money);
-          fetch(`http://localhost:8080/updateMoney/${money + (parseFloat(quantity2) * quote.quote.c)}`, {
+          fetch(`https://assignment3-nodejs-akshil-shah.wl.r.appspot.com/updateMoney/${money + (parseFloat(quantity2) * quote.quote.c)}`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

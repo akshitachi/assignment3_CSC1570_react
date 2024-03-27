@@ -29,7 +29,7 @@ function Search_Bar() {
   useEffect(() => {
     if (ticker && !itemSelected) {
       setLoading(true);
-      fetch(`http://localhost:8080/autocomplete/${ticker}`, {
+      fetch(`https://assignment3-nodejs-akshil-shah.wl.r.appspot.com/autocomplete/${ticker}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

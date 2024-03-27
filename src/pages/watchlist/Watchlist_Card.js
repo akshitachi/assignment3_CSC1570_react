@@ -9,7 +9,7 @@ const Watchlist_Card = ({ticker}) => {
    const [quote, setQuote] = useState({});
    const { updateSearchResults } = useSearchResult();
     useEffect(() => {
-        fetch(`http://localhost:8080/quote/${ticker}`, {
+        fetch(`https://assignment3-nodejs-akshil-shah.wl.r.appspot.com/quote/${ticker}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -25,7 +25,7 @@ const Watchlist_Card = ({ticker}) => {
         });
     }, [ticker]);
 const handleDelete = () => {
-    fetch(`http://localhost:8080/watchlistDelete/${ticker}`, {
+    fetch(`https://assignment3-nodejs-akshil-shah.wl.r.appspot.com/watchlistDelete/${ticker}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json', 

@@ -38,7 +38,7 @@ function Stock_Data({}) {
       ) {
         try {
           const response = await fetch(
-            `http://localhost:8080/search/${ticker}`,
+            `https://assignment3-nodejs-akshil-shah.wl.r.appspot.com/search/${ticker}`,
             {
               method: "GET",
               headers: {
@@ -58,7 +58,7 @@ function Stock_Data({}) {
     const checkFavorite = async () => {
       try {
         const response = await fetch(
-          `http://localhost:8080/watchlistCheck/${ticker}`
+          `https://assignment3-nodejs-akshil-shah.wl.r.appspot.com/watchlistCheck/${ticker}`
         );
         if (response.ok) {
           setIsFavorite(true);
@@ -70,7 +70,7 @@ function Stock_Data({}) {
       }
     };
     checkFavorite();
-    fetch(`http://localhost:8080/checkPortfolio/${ticker}`, {
+    fetch(`https://assignment3-nodejs-akshil-shah.wl.r.appspot.com/checkPortfolio/${ticker}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -100,7 +100,7 @@ function Stock_Data({}) {
     }
   }, [showMessagePortfolio]);
   useEffect(() => {
-    fetch(`http://localhost:8080/getMoney`, {
+    fetch(`https://assignment3-nodejs-akshil-shah.wl.r.appspot.com/getMoney`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -115,7 +115,7 @@ function Stock_Data({}) {
         console.error(error);
       })
   }, []);
-  useEffect(() => {fetch(`http://localhost:8080/getPortfolioItem/${ticker}`, {
+  useEffect(() => {fetch(`https://assignment3-nodejs-akshil-shah.wl.r.appspot.com/getPortfolioItem/${ticker}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -145,7 +145,7 @@ function Stock_Data({}) {
   }
    const profile = searchResults.profile;
    const getMoney = () => {
-    fetch(`http://localhost:8080/getMoney`, {
+    fetch(`https://assignment3-nodejs-akshil-shah.wl.r.appspot.com/getMoney`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -163,7 +163,7 @@ function Stock_Data({}) {
  
    const handleFavoriteClick = () => {
     if (!isFavorite) {
-      fetch(`http://localhost:8080/watchlist/${profile.ticker}`, {
+      fetch(`https://assignment3-nodejs-akshil-shah.wl.r.appspot.com/watchlist/${profile.ticker}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -180,7 +180,7 @@ function Stock_Data({}) {
         console.error(error);
       });
     } else {
-      fetch(`http://localhost:8080/watchlistDelete/${profile.ticker}`, {
+      fetch(`https://assignment3-nodejs-akshil-shah.wl.r.appspot.com/watchlistDelete/${profile.ticker}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -235,7 +235,7 @@ function Stock_Data({}) {
       avgCost: searchResults.quote.c,
     };
     if(!isPortfolio){
-    fetch("http://localhost:8080/makeportfolio", {
+    fetch("https://assignment3-nodejs-akshil-shah.wl.r.appspot.com/makeportfolio", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -252,7 +252,7 @@ function Stock_Data({}) {
       .catch((error) => {
         console.error(error);
       });
-    fetch(`http://localhost:8080/updateMoney/${money - (parseFloat(quantity) * searchResults.quote.c)}`, {
+    fetch(`https://assignment3-nodejs-akshil-shah.wl.r.appspot.com/updateMoney/${money - (parseFloat(quantity) * searchResults.quote.c)}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -270,7 +270,7 @@ function Stock_Data({}) {
       });
     }
     else{
-        fetch(`http://localhost:8080/updatePortfolio/${profile.ticker}`, {
+        fetch(`https://assignment3-nodejs-akshil-shah.wl.r.appspot.com/updatePortfolio/${profile.ticker}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -287,7 +287,7 @@ function Stock_Data({}) {
           .catch(error => {
             console.error(error);
           });
-        fetch(`http://localhost:8080/updateMoney/${money - (parseFloat(quantity) * searchResults.quote.c)}`, {
+        fetch(`https://assignment3-nodejs-akshil-shah.wl.r.appspot.com/updateMoney/${money - (parseFloat(quantity) * searchResults.quote.c)}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -310,7 +310,7 @@ function Stock_Data({}) {
       setisPortfolio2(true);
   };
   const handleSellClick = () => {
-    fetch(`http://localhost:8080/sellPortfolio/${ticker}`, {
+    fetch(`https://assignment3-nodejs-akshil-shah.wl.r.appspot.com/sellPortfolio/${ticker}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -328,7 +328,7 @@ function Stock_Data({}) {
         console.error(error);
       });
       console.log(money);
-      fetch(`http://localhost:8080/updateMoney/${money + (parseFloat(quantity2) * searchResults.quote.c)}`, {
+      fetch(`https://assignment3-nodejs-akshil-shah.wl.r.appspot.com/updateMoney/${money + (parseFloat(quantity2) * searchResults.quote.c)}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
