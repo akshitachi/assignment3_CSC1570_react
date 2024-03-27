@@ -1,5 +1,5 @@
 {
-  "homepage": "http://akshitachi.github.io/assignment3_CSC1570_react.github.io",
+  "homepage": "http://akshitachi.github.io/assignment3_CSC1570_react",
   "name": "client_react",
   "version": "0.1.0",
   "private": true,
@@ -38,7 +38,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"  
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
