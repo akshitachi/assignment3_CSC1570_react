@@ -71,6 +71,20 @@ function Charts  () {
             height: 700,
             width: 1300,
             backgroundColor: '#F8F8F8',
+            events: {
+                load: function () {
+                  const chart = this;
+                  console.log(window.innerWidth);
+                  if(window.innerWidth< 844){
+                  function resizeChart() {
+                    const chartWidth = chart.renderTo.parentElement.clientWidth;
+                    chart.setSize(chartWidth, 700,false);
+                }
+                  resizeChart();
+                  window.addEventListener('resize', resizeChart);
+                }
+                }
+              }
         },
         rangeSelector: {
             selected: 2
@@ -82,13 +96,14 @@ function Charts  () {
             text: 'With SMA and Volume by Price technical indicators'
         },
         yAxis:{
-            opposite: false,
+            opposite: false, 
+
         },
         yAxis: [{
             startOnTick: false,
             opposite: true,
             endOnTick: false,
-
+            lineColor: 'black',
             title: {
                 text: 'OHLC'
             },
@@ -99,16 +114,15 @@ function Charts  () {
             }
         }, {
             opposite: true,
+            lineColor: 'black',
             title: {
-                text: 'Volume'
+                text: 'Volume' 
             },
             top: '65%',
             height: '35%',
             offset: 0,
             lineWidth: 2
-        },
-        
-    ],
+        }],
         tooltip: {
             split: true
         },

@@ -14,9 +14,9 @@ function Insight () {
         const negativeChange = Array.isArray(insiderSentiment.data) ? insiderSentiment.data.reduce((total, result) => result.change < 0 ? total + result.change : total, 0) : 0;
     return (
         <div>
-                <center className='mainTextInsider'>Insider Sentiments</center>
+                <center className={`mainTextInsider${window.innerWidth > 844 ? '' : 'big'}`}>Insider Sentiments</center>
                 <center>
-            <table>
+            <table className={`table${window.innerWidth > 844 ? '' : 'big'}`}>
                 <thead>
                     <tr>
                         <th>{searchResults.profile.name}</th>
@@ -43,8 +43,8 @@ function Insight () {
                 </tbody>
             </table>
             </center>
-            <div className='rowInsights'>
-            <div className='recommendationChart'>
+            <div className={`rowInsights${window.innerWidth > 844 ? '' : 'big'}`}>
+            <div className={`recommendationChart${window.innerWidth > 844 ? '' : 'big'}`}>
 <RecommendationChart/>
 </div>
 <EarningsCharts/>

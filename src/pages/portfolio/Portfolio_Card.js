@@ -202,7 +202,7 @@ return (
                         type="number"
                         value={parseFloat(quantity2)}
                         onChange={(e) => setQuantity2(parseFloat(e.target.value))}
-                        style={{ width: "380px",marginLeft:7 }}
+                        style={{ width: "70%",marginLeft:7 }}
                         min={0}
                         max={9999}
                       />
@@ -238,7 +238,7 @@ return (
                         type="number"
                         value={parseFloat(quantity2)}
                         onChange={(e) => setQuantity2(parseFloat(e.target.value))}
-                        style={{ width: "380px",marginLeft:7 }}
+                        style={{ width: "70%",marginLeft:7 }}
                         min={0}
                         max={9999}
                       />

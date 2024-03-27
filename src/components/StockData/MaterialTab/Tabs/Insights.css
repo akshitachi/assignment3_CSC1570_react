@@ -5,7 +5,7 @@
     margin-top: 0px;
 }
 
-table {
+.table {
     border-collapse: collapse;
     width: 30%;
 }
@@ -33,24 +33,24 @@ tr:last-child {
    margin-right: 150px;
 margin-bottom: 80px;
 }
-@media (max-width: 768px) {
-    
-    .mainTextInsider {
-        font-size: 22px;
-        font-weight: 600;
-        color: #000;
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
-    table{
-        width: 100%;
-    }
-    .rowInsights{
-        flex-direction: column;
-        margin-left: 0px;
-        margin-right: 0px;
-    }
-    .recommendationChart{
-        margin-bottom: 20px;
-    }
+.mainTextInsiderbig {
+    font-size: 22px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.tablebig{
+    width: 100%;
+    margin-bottom: 20px;
+}
+.rowInsightsbuy{
+display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 20px;
+}
+.recommendationChartbuy{
+    margin-bottom: 40px;
 }

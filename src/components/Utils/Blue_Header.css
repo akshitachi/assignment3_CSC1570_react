@@ -10,7 +10,6 @@
 color:#777AC0
 }
 
-
 .stock_navbar .navbar_toggle{
   color: #969BE2;
   border-color: #2b2ab1;
@@ -18,7 +17,7 @@ color:#777AC0
 }
 
 .stock_navbar .navbar-container{
-  padding: 0px 58px;
+  padding: 0px 30px;
   margin: 0;
   max-width: 100%;
 }
@@ -32,17 +31,6 @@ color:#777AC0
 }
 .stock_navbar .nav-link {
   color: #777AC0;
-  text-align: center;
-  width: 100px;
+  padding: 10px;
 }
 
-@media (max-width: 844px) {
-  .stock_navbar .navbar-container{
-    padding: 0px 25px;
-  }
-  .stock_navbar .nav-link {
-    width: 300px;
-  text-align: start;
-  padding: 10px;
-  }
-}

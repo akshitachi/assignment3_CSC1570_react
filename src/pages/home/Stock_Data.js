@@ -12,6 +12,7 @@ import { faStar as faStarSolid } from '@fortawesome/free-solid-svg-icons';
 import { faX } from '@fortawesome/free-solid-svg-icons';
 import { CircularProgress } from '@mui/material';
 import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
 
 function Stock_Data({}) {
   const { ticker } = useParams();
@@ -410,16 +411,12 @@ function Stock_Data({}) {
                   />
                 </div>
               </div>
-              <h1 className="companyName">{searchResults.profile.name}</h1>
-              <p className="exchange">{searchResults.profile.exchange}</p>
+              <h3 className="companyName">{searchResults.profile.name}</h3>
+              <p className={`exchange${window.innerWidth > 844 ? '' : 'big'}`}>{searchResults.profile.exchange}</p>
               <div className="row2">
-                <button className="buy_button" onClick={handleShow} disabled={!searchResults.marketStatus}> 
-                  Buy
-                </button>
+              <Button variant="success" className="buy_button" onClick={handleShow} disabled={!searchResults.marketStatus}>Buy</Button>
                 {isPortfolio && (
-                  <button className="sell_button" onClick={handleShow2} disabled={!searchResults.marketStatus}>
-                    Sell
-                  </button>
+              <Button variant="danger" className="sell_button" onClick={handleShow2} disabled={!searchResults.marketStatus}>Sell</Button>
                 )}
                 <Modal show={show} onHide={handleClose} animation={false}>
                   <Modal.Header closeButton>
@@ -436,7 +433,7 @@ function Stock_Data({}) {
                         type="number"
                         value={parseFloat(quantity)}
                         onChange={(e) => setQuantity(parseFloat(e.target.value))}
-                        style={{ width: "380px",marginLeft:7 }}
+                        style={{ width: "70%",marginLeft:7 }}
                         min={0}
                         max={9999}
                       />
@@ -448,7 +445,7 @@ function Stock_Data({}) {
                   <Modal.Footer>
                     <div className="buy_column">
                       <div>
-                        Total: {quantity ? (parseFloat(quantity) * searchResults.quote.c).toFixed(2) : 0}
+                        Total: {quantity ? (parseFloat(quantity) * searchResults.quote.c).toFixed(2) : 0.00}
                       </div> 
                       <button className="buy_button2" onClick={handleBuyClick} disabled={ (money < parseFloat(quantity) * searchResults.quote.c || quantity===0 || isNaN(quantity))} style={{ backgroundColor: (money < parseFloat(quantity) * searchResults.quote.c || quantity===0 ||isNaN(quantity)) ? "#85B99E" : "" }}>
                         Buy
@@ -472,7 +469,7 @@ function Stock_Data({}) {
                         type="number"
                         value={parseFloat(quantity2)}
                         onChange={(e) => setQuantity2(parseFloat(e.target.value))}
-                        style={{ width: "380px",marginLeft:7 }}
+                        style={{ width: "70%",marginLeft:7 }}
                         min={0}
                         max={9999}
                       />
@@ -484,7 +481,7 @@ function Stock_Data({}) {
                   <Modal.Footer>
                     <div className="buy_column">
                       <div>
-                        Total: {searchResults && searchResults.quote && quantity2 ? (parseFloat(quantity2) * searchResults.quote.c).toFixed(2) : 0}
+                        Total: {searchResults && searchResults.quote && quantity2 ? (parseFloat(quantity2) * searchResults.quote.c).toFixed(2) : 0.00}
                       </div> 
                       <button className="buy_button2" onClick={handleSellClick} disabled={searchResults && searchResults.quote && portfolio &&  (portfolio.quantity < parseFloat(quantity2) || quantity2===0 || isNaN(quantity2))} style={{ backgroundColor: searchResults && portfolio && searchResults.quote &&  (portfolio.quantity < parseFloat(quantity2) || quantity2===0 ||isNaN(quantity2)) ? "#85B99E" : "" }}>
                         Sell

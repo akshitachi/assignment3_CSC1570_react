@@ -5,12 +5,9 @@ import VBP from 'highcharts/indicators/volume-by-price';
 
 import HCMA from 'highcharts/highcharts-more';
 import HSIndicators from "highcharts/indicators/indicators";
-// import '../Tabs/Charts.css';
-// import { useEffect, useState } from 'react';
 HCMA(Highcharts); 
 
 HSIndicators(Highcharts);
- // Initialize the stock module
 
 VBP(Highcharts);
 IndicatorsCore(Highcharts);
