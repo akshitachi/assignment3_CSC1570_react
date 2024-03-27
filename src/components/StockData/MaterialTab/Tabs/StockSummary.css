@@ -34,14 +34,23 @@ span{
     margin-top: 10px;
     margin-bottom: 10px;
 }
-
+.stockSummaryheaderbig{
+  margin-left: 75px;
+}
+.aboutbig{
+    margin-top: 30px;
+    text-align: center;
+    width: 100%;
+}
+.stockSummarybig{
+    display: flex;
+    flex-direction: column;
+}
+.peerNamesbig{
+    margin-bottom: 15px;
+}
+/* 
 @media (max-width: 768px) {
-    .stockSummaryoverall{
-        margin-left: 0px;
-    }
-    .stockSummaryheader{
-        margin-left: 75px;
-    }
     .about{
         width: 100%;
     }
@@ -52,4 +61,4 @@ span{
     .peerNames{
         margin-bottom: 15px;
     }
-}
+} */

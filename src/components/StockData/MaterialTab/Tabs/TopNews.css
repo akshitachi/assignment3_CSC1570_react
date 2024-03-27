@@ -15,12 +15,14 @@
     width: 50%;
 }
 
-@media (max-width: 768px) {
-    .topNews {
-        margin-left: 0px;
-        margin-right: 0px;
-    }
-    .item5 {
-        width: 100%;
-    }
+.item5big {
+    width: 100%;
+}
+
+.topNewsbig {
+    display: flex;
+    flex-direction: column;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 50px;
 }

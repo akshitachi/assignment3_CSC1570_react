@@ -40,8 +40,8 @@ for(var i = 0 ; i < chartData1.length; i++){
 const options = {
   chart: {
     backgroundColor: '#F8F8F8',
-    width: 600,
-    height: 380, 
+    width: window.innerWidth<844 ? 300: 600 ,
+    height:window.innerWidth<844 ?300: 380, 
   },
   rangeSelector: {
     selected: 1
@@ -72,7 +72,7 @@ const options = {
   },
   series: [
     {
-      name: '',
+      name: `${searchResults.profile.ticker}`,
       data: hourlyChart,
       type: 'line',
       color: searchResults.quote.d > 0 ? 'green' :searchResults.quote.d<0? 'red':'black',
@@ -87,7 +87,9 @@ const options = {
   ]
 };
   return (
-    <HighchartsReact highcharts={Highcharts} options={options} />
+    <div style={{ marginBottom: '20px' }}>
+      <HighchartsReact highcharts={Highcharts} options={options} />
+    </div>
   )
 }
 

@@ -9,12 +9,12 @@ function TopNews () {
   const news = searchResults.news;
   console.log(news);
 return (
-    <div className='topNews'>
+    <div className={`topNews${window.innerWidth > 844 ? '' : 'big'}`}>
         <div className='row'>
             {news.map((item, index) => {
                 if (index % 2 === 0) {
                     return (
-                       <div className='item5'>
+                       <div className={`item5${window.innerWidth > 844 ? '' : 'big'}`}>
                         <NewsCard item={item}/>
                         </div>
                     );
@@ -26,7 +26,7 @@ return (
             {news.map((item, index) => {
                 if (index % 2 !== 0) {
                     return (
-                       <div className='item5'>
+                       <div className={`item5${window.innerWidth > 844 ? '' : 'big'}`}>
                         <NewsCard item={item}/>
                         </div>
                     );

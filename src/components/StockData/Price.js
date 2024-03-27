@@ -30,10 +30,10 @@ function Price() {
       roundedDp = quoteResult.dp.toFixed(2);
     }
   return (
-    <div className='price'>
-      <div className='lastPrice' style={{ color: changeColor }}>
+    <div className={`price${window.innerWidth > 844 ? '' : 'big'}`}>
+      <h3 className='lastPrice' style={{ color: changeColor }}>
         {roundedC}
-      </div>
+      </h3>
       <div className='priceChanges'>
         {roundedD !== 0 && (
           <div
@@ -43,14 +43,14 @@ function Price() {
             {triangleDirection === 'up' ? '▲' : '▼'}
           </div>
         )}
-        <div className='change' style={{ color: changeColor }}>
+        <div className={`change${window.innerWidth > 844 ? '' : 'big'}`} style={{ color: changeColor }}>
           {roundedD}
         </div>
-        <div className='percent' style={{ color: changeColor }}>
+        <div className={`percent${window.innerWidth > 844 ? '' : 'big'}`} style={{ color: changeColor }}>
           ({roundedDp}%)
         </div>
       </div>
-      <div className='date'>{formattedDate}</div>
+      <div className={`date${window.innerWidth > 844 ? '' : 'big'}`}>{formattedDate}</div>
     </div>
   );
 }

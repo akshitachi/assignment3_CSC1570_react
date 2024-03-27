@@ -5,11 +5,10 @@
     display: block;
 }
 
-@media (max-width: 844px) {
-    .company_logo{
-        margin-left: 13px;
-        width: 55px;
-        height: 55px;
-        margin-right: 10px;
-    }
+.company_logobig{
+    margin-left: 13px;
+    width: 55px;
+    height: 55px;
+    margin-right: 10px;
+    display: block;
 }
