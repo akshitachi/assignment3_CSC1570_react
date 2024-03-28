@@ -13,8 +13,10 @@ function Search_Bar() {
   const [loading, setLoading] = useState(false);
   const [dropdownData, setDropdownData] = useState([]);
   const [itemSelected, setItemSelected] = useState(false);
-  const navigate = useNavigate();
   const [pageChange, setPageChange] = useState(false);
+  const [formSubmitted, setFormSubmitted] = useState(false); 
+  const [noData, setNoData] = useState(false);
+  const navigate = useNavigate();
   const { searchResults, updateSearchResults } = useSearchResult();
 
   function ResultClick(symbol) {
@@ -24,10 +26,11 @@ function Search_Bar() {
     setLoading(false);
     setPageChange(true);
     navigate(`/search/${symbol}`);
+    setFormSubmitted(false); 
   }
 
   useEffect(() => {
-    if (ticker && !itemSelected) {
+    if (ticker && !itemSelected && !formSubmitted) { 
       setLoading(true);
       fetch(`https://assignment3-nodejs-akshil-shah.wl.r.appspot.com/autocomplete/${ticker}`, {
         method: 'POST',
@@ -48,10 +51,34 @@ function Search_Bar() {
       setItemSelected(false);
       setDropdownData([]);
     }
-  }, [ticker]);
+  }, [ticker, formSubmitted]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setFormSubmitted(true); 
+    fetch(`https://assignment3-nodejs-akshil-shah.wl.r.appspot.com/search/${ticker}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        if(data.recommendationData.length===0){
+       setNoData(true);
+        }
+        else{
+          ResultClick(ticker);
+        }
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  };
 
   return (
-    <Form className="search-bar">
+    <Form className="search-bar" onSubmit={handleSubmit}>
       <Form.Group className={`search-field ${window.innerWidth > 844 ? '' : 'big'}`}>
         {searchResults && searchResults.profile.ticker ? (
           <Form.Control
@@ -81,38 +108,42 @@ function Search_Bar() {
             setLoading(false);
             updateSearchResults(null);
             navigate(`/search/home`);
-            }}
-          />
-          </Form.Group>
-          <div className={`results-list  ${window.innerWidth > 844 ? '' : 'big'}`}>
-          {loading && ticker && (
-            <div className="loader">
+            setNoData(false);
+            setFormSubmitted(false); 
+          }}
+        />
+      </Form.Group>
+      <div className={`results-list  ${window.innerWidth > 844 ? '' : 'big'}`}>
+        {!formSubmitted && loading && ticker && (
+          <div className="loader">
             <Spinner animation="border" role="status" className="spinner"></Spinner>
-            </div>
-          )}
-          {!loading && dropdownData.length > 0 && ticker && (
-            <div>
+          </div>
+        )}
+        {!formSubmitted && !loading && dropdownData.length > 0 && ticker && (
+          <div>
             {dropdownData.map((item) => (
               <div
-              className="autocomplete-item"
-              key={item.symbol}
-              onClick={() => ResultClick(item.symbol)}
+                className="autocomplete-item"
+                key={item.symbol}
+                onClick={() => ResultClick(item.symbol)}
               >
-              {item.symbol} | {item.description} 
-              {itemSelected && item.symbol === ticker && <span className="green-tick">&#10004;</span>}
+                {item.symbol} | {item.description}
+                {itemSelected && item.symbol === ticker && <span className="green-tick">&#10004;</span>}
               </div>
             ))}
-            </div>
-          )}
           </div>
-          <div>
-          
-          {!loading && dropdownData.length === 0 && ticker && !pageChange && ( 
-            <Alert variant='danger' className={`no-results ${window.innerWidth > 844 ? '' : 'big'}`}>No data found. Please enter a valid Ticker</Alert>
-          )}
-          </div>
-        </Form>
-        );
+        )}
+      </div>
+      <div>
+        {!loading && dropdownData.length === 0 && ticker && !pageChange && !noData &&(
+          <Alert variant='danger' className={`no-results ${window.innerWidth > 844 ? '' : 'big'}`}>No data found. Please enter a valid Ticker</Alert>
+        )}
+        {noData && (
+          <Alert variant='danger' className={`no-results ${window.innerWidth > 844 ? '' : 'big'}`}>No data found. Please enter a valid Ticker</Alert>
+        )}
+      </div>
+    </Form>
+  );
 }
 
 export default Search_Bar;
