@@ -29,8 +29,7 @@ tr:last-child {
     flex-direction: row;
     margin-top: 30px;
     justify-content: space-between;
-   margin-left: 150px;
-   margin-right: 150px;
+   margin-right: 50px;
 margin-bottom: 80px;
 }
 .mainTextInsiderbig {
@@ -42,15 +41,19 @@ margin-bottom: 80px;
     width: 100%;
     margin-bottom: 20px;
 }
-.rowInsightsbuy{
-display: flex;
+
+.recommendationChart{
+    margin-left: 130px;
+    margin-right: 10px;
+}
+.rowInsightsbig{
+    display: flex;
     flex-direction: column;
     justify-content: space-between;
-
     margin-left: 0px;
     margin-right: 0px;
     margin-bottom: 20px;
 }
-.recommendationChartbuy{
-    margin-bottom: 40px;
+.recommendationChartbig{
+    margin-bottom: 10px;
 }

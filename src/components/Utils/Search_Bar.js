@@ -76,6 +76,28 @@ function Search_Bar() {
         console.error(error);
       });
   };
+  const handleSubmit2 = () => {
+    setFormSubmitted(true); 
+    fetch(`https://assignment3-nodejs-akshil-shah.wl.r.appspot.com/search/${ticker}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        if(data.recommendationData.length===0){
+       setNoData(true);
+        }
+        else{
+          ResultClick(ticker);
+        }
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  };
 
   return (
     <Form className="search-bar" onSubmit={handleSubmit}>
@@ -98,7 +120,9 @@ function Search_Bar() {
           />
         )}
 
-        <BsSearch className="search-icon" />
+        <BsSearch className="search-icon" onClick={()=>{
+          handleSubmit2();
+        }}/>
         <BsX
           className="clear-icon"
           onClick={() => {
