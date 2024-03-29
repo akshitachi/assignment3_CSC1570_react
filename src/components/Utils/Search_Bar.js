@@ -163,7 +163,7 @@ function Search_Bar() {
           <Alert variant='danger' className={`no-results ${window.innerWidth > 844 ? '' : 'big'}`}>No data found. Please enter a valid Ticker</Alert>
         )}
         {noData && (
-          <Alert variant='danger' className={`no-results ${window.innerWidth > 844 ? '' : 'big'}`}>Please enter a valid ticker</Alert>
+          <Alert variant='danger' className={`no-results ${window.innerWidth > 844 ? '' : 'big'}`}>No data found. Please enter a valid Ticker</Alert>
         )}
       </div>
     </Form>

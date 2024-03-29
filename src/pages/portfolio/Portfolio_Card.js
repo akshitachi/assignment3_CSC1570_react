@@ -212,10 +212,10 @@ return (
         </div>
         )}
         <div className='rowportfolio6'>
-        <button className="buy_button3" onClick={handleShow} disabled={searchResults && !searchResults.marketStatus}>
+        <button className="buy_button3" onClick={handleShow}>
                   Buy
                 </button>
-                  <button className="sell_button2" onClick={handleShow2} disabled={searchResults && !searchResults.marketStatus}>
+                  <button className="sell_button2" onClick={handleShow2}>
                     Sell
                   </button>
                   <Modal show={show} onHide={handleClose} animation={false}>

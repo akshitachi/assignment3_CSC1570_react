@@ -63,13 +63,20 @@ const options = {
     minTickInterval: 16,
     tickWidth: 1,
     tickColor: 'black',
+
   },
-  tooltip: {},
+  tooltip: {
+    split: true,
+  },
   yAxis: {
     opposite: true,
     title: null,
     tickAmount:4,
   },
+  scrollbar: {
+    enabled: true
+  },
+
   series: [
     {
       name: `${searchResults.profile.ticker}`,

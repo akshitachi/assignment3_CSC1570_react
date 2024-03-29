@@ -80,10 +80,11 @@ function Stock_Data({}) {
       .then((data) => {
         setisPortfolio(data);
       });
-
+      if(searchResults && searchResults.marketStatus){
     const interval = setInterval(fetchData, 15000);
-
     return () => clearInterval(interval); 
+    }
+
   }, [ticker]);
   useEffect(() => {
     if (showMessage) {
@@ -414,9 +415,9 @@ function Stock_Data({}) {
               <h3 className="companyName">{searchResults.profile.name}</h3>
               <p className={`exchange${window.innerWidth > 844 ? '' : 'big'}`}>{searchResults.profile.exchange}</p>
               <div className="row2">
-              <Button variant="success" className="buy_button" onClick={handleShow} disabled={!searchResults.marketStatus}>Buy</Button>
+              <Button variant="success" className="buy_button" onClick={handleShow}>Buy</Button>
                 {isPortfolio && (
-              <Button variant="danger" className="sell_button" onClick={handleShow2} disabled={!searchResults.marketStatus}>Sell</Button>
+              <Button variant="danger" className="sell_button" onClick={handleShow2}>Sell</Button>
                 )}
                 <Modal show={show} onHide={handleClose} animation={false}>
                   <Modal.Header closeButton>
