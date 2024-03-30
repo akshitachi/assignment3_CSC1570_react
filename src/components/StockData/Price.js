@@ -9,18 +9,29 @@ function Price() {
 
   const triangleDirection = quoteResult.d > 0 ? 'up' : 'down';
 
-  const unixTimestamp = quoteResult.t;
-  const timestampInMilliseconds = unixTimestamp * 1000;
-  const date = new Date(timestampInMilliseconds);
-  const formattedDate = `${date.getFullYear()}-${(date.getMonth() + 1)
-    .toString()
-    .padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')} ${date
-    .getHours()
-    .toString()
-    .padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}:${date
-    .getSeconds()
-    .toString()
-    .padStart(2, '0')}`;
+  // const unixTimestamp = quoteResult.t;
+  // const timestampInMilliseconds = unixTimestamp * 1000;
+  // const date = new Date(timestampInMilliseconds);
+  // const formattedDate = `${date.getFullYear()}-${(date.getMonth() + 1)
+  //   .toString()
+  //   .padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')} ${date
+  //   .getHours()
+  //   .toString()
+  //   .padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}:${date
+  //   .getSeconds()
+  //   .toString()
+  //   .padStart(2, '0')}`;
+    const currentDate = new Date().toLocaleString('en-US', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit'
+});
+
+const formattedDate = new Date(currentDate);
+const formattedDateString = `${formattedDate.getFullYear()}-${(formattedDate.getMonth() + 1).toString().padStart(2, '0')}-${formattedDate.getDate().toString().padStart(2, '0')} ${formattedDate.getHours().toString().padStart(2, '0')}:${formattedDate.getMinutes().toString().padStart(2, '0')}:${formattedDate.getSeconds().toString().padStart(2, '0')}`;
     var roundedD = 0;
     var roundedC = 0;
     var roundedDp = 0;
@@ -50,7 +61,7 @@ function Price() {
           ({roundedDp}%)
         </div>
       </div>
-      <div className={`date${window.innerWidth > 844 ? '' : 'big'}`}>{formattedDate}</div>
+      <div className={`date${window.innerWidth > 844 ? '' : 'big'}`}>{formattedDateString}</div>
     </div>
   );
 }

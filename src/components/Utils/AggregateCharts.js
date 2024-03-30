@@ -8,7 +8,7 @@ function AggregateCharts  ()  {
     const { searchResults } = useSearchResult();
     const [ chartData,updateChartData ] = useState([]);
 useEffect(() => {
-  fetch(`https://assignment3-nodejs-akshil-shah.wl.r.appspot.com/getchart/${searchResults.profile.ticker}`, {
+  fetch(`http://localhost:8080/getchart/${searchResults.profile.ticker}?isMarketOpen=${searchResults.marketStatus}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -21,31 +21,23 @@ useEffect(() => {
     .catch(error => {
       console.error(error);
     });
-}, [searchResults.profile.ticker]);
-const chartData1 = chartData.results;
-if(chartData1===undefined){
+}, []);
+const chartData1 = chartData;
+if(chartData1===null){
   return null;
 }
 var hourlyChart = [];
 for(var i = 0 ; i < chartData1.length; i++){
   let tempTime = new Date(chartData1[i].t);
-  let correct_time = tempTime.getTime();
-
-  let hour = tempTime.getHours();
-  let minute = tempTime.getMinutes();
-  let timeString = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
-  hourlyChart.push([timeString.slice(0,5), chartData1[i].c]);
+  hourlyChart.push([chartData1[i].t, chartData1[i].c]);
 }
-
 const options = {
   chart: {
     backgroundColor: '#F8F8F8',
     width: window.innerWidth<844 ? 300: 600 ,
     height:window.innerWidth<844 ?300: 380, 
   },
-  rangeSelector: {
-    selected: 1
-  },
+
   title: {
     text: `${searchResults.profile.ticker} Hourly Price Variation`,
     style: {
@@ -59,10 +51,6 @@ const options = {
     dateTimeLabelFormats: {
       hour: '%H:%M'
     },
-    categories: hourlyChart.map(item => item[0]),
-    minTickInterval: 16,
-    tickWidth: 1,
-    tickColor: 'black',
 
   },
   tooltip: {
@@ -71,11 +59,23 @@ const options = {
   yAxis: {
     opposite: true,
     title: null,
-    tickAmount:4,
   },
   scrollbar: {
     enabled: true
   },
+legend:{
+  enabled: false
+},
+navigator: {
+  enabled: true
+},
+plotOptions: {
+  series: {
+    marker: {
+      enabled: false
+    },
+  },
+},
 
   series: [
     {
@@ -86,6 +86,7 @@ const options = {
       tooltip: {
         valueDecimals: 2
       },
+      // yAxis:1,
       marker: false,
       pointPlacement: 'on',
       showInLegend: false,

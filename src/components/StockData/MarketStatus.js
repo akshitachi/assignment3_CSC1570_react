@@ -5,22 +5,24 @@ import { useSearchResult } from '../State/SearchResultContext';
 function MarketStatus  () {
   const {searchResults} = useSearchResult();
   const marketStatus = searchResults.marketStatus;
+  const quoteResult = searchResults.quote;
 
-  const currentDate = new Date().toLocaleString('en-US', {
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit'
-});
 
-const formattedDate = new Date(currentDate);
-const formattedDateString = `${formattedDate.getFullYear()}-${(formattedDate.getMonth() + 1).toString().padStart(2, '0')}-${formattedDate.getDate().toString().padStart(2, '0')} ${formattedDate.getHours().toString().padStart(2, '0')}:${formattedDate.getMinutes().toString().padStart(2, '0')}:${formattedDate.getSeconds().toString().padStart(2, '0')}`;
-
+const unixTimestamp = quoteResult.t;
+  const timestampInMilliseconds = unixTimestamp * 1000;
+  const date = new Date(timestampInMilliseconds);
+  const formattedDate = `${date.getFullYear()}-${(date.getMonth() + 1)
+    .toString()
+    .padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')} ${date
+    .getHours()
+    .toString()
+    .padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}:${date
+    .getSeconds()
+    .toString()
+    .padStart(2, '0')}`;
 return (
     <div className={`marketStatus${window.innerWidth > 844 ? '' : 'big'}`} style={{ color: marketStatus ? 'green' : 'red' }}>
-        {marketStatus ? 'Market is Open' : `Market is Closed on ${formattedDateString}`}
+        {marketStatus ? 'Market is Open' : `Market is Closed on ${formattedDate}`}
     </div>
 );
 }

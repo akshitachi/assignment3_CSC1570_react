@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './Portfolio_Card.css';
 import Modal from 'react-bootstrap/Modal';
 import { useSearchResult } from '../../components/State/SearchResultContext';
+import { useNavigate } from 'react-router-dom';
 
 const Portfolio_Card = ({quantity,avgCost,name,ticker,totalCost,sendDataToParent}) => {
     const [quote, setQuote] = useState({});
@@ -9,7 +10,8 @@ const Portfolio_Card = ({quantity,avgCost,name,ticker,totalCost,sendDataToParent
     const [show2, setShow2] = useState(false);
     const [money, setMoney] = useState(0);
     const [quantity2, setQuantity2] = useState(0);
-    const {searchResults} = useSearchResult();
+    const {searchResults,updateSearchResults} = useSearchResult();
+    const navigate = useNavigate();
     useEffect(() => {
         fetch(`https://assignment3-nodejs-akshil-shah.wl.r.appspot.com/quote/${ticker}`, {
             method: 'GET',
@@ -57,7 +59,10 @@ const Portfolio_Card = ({quantity,avgCost,name,ticker,totalCost,sendDataToParent
        const handleShow2 = () => {
         setShow2(true); 
       }
-
+      const handleNavigate = () =>{
+        updateSearchResults(null);
+        navigate(`/search/${ticker}`);
+      }
       const handleBuyClick = () => {
         var newPortfolio = { 
           totalCost: parseFloat(quantity2) * quote.quote.c,
@@ -145,7 +150,7 @@ const Portfolio_Card = ({quantity,avgCost,name,ticker,totalCost,sendDataToParent
       };
 return (
     <div className='portfolioCard'>
-        <div className='rowportfolio2'>
+        <div className='rowportfolio2'onClick={handleNavigate}>
             <h2 className='portfolioTicker'>{ticker}</h2>
             <div className='portfolioName'>{name}</div>
         </div>
