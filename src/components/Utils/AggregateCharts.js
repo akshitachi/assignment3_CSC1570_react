@@ -21,7 +21,7 @@ useEffect(() => {
     .catch(error => {
       console.error(error);
     });
-}, []);
+}, [searchResults.profile.ticker,searchResults.marketStatus]);
 const chartData1 = chartData;
 if(chartData1===null){
   return null;
@@ -31,6 +31,7 @@ for(var i = 0 ; i < chartData1.length; i++){
   let tempTime = new Date(chartData1[i].t);
   hourlyChart.push([chartData1[i].t, chartData1[i].c]);
 }
+console.log(hourlyChart);
 const options = {
   chart: {
     backgroundColor: '#F8F8F8',
